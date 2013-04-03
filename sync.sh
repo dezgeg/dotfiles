@@ -1,7 +1,10 @@
 #!/bin/bash -e
-secrets_remote="tmtynkky@melkki.cs.helsinki.fi:secrets.git"
-
 my_dir="$(readlink -f "$(dirname "$0")")"
+
+secrets_remote="tmtynkky@melkki.cs.helsinki.fi:secrets.git"
+secrets_dir="$my_dir/secrets"
+file_list="$my_dir/files.list"
+
 dry_run=0
 skip_secrets=0
 
@@ -31,7 +34,18 @@ for arg; do
     esac
 done
 
-file_list="$my_dir/files.list"
+if [ $skip_secrets = 0 ]; then
+    if [ ! -d "$secrets_dir" ]; then
+        run_cmd git clone "$secrets_remote" "$secrets_dir"
+    else
+        pushd "$secrets_dir" >/dev/null
+        run_cmd git pull
+        popd >/dev/null
+    fi
+    run_cmd chmod -R a-rw,u=rwX "$secrets_dir"
+    echo
+fi
+
 [ ! -f "$file_list" ] && die "$file_list: not found"
 
 for file in $(cat "$file_list"); do
