@@ -1,0 +1,24 @@
+[user]
+	name = Tuomas Tynkkynen
+	email = dezgeg@gmail.com
+[color]
+	ui = auto
+	status = auto
+	branch = auto
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log -p
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-files
+
+[difftool.latexdiff]
+    cmd = git-latexdiff "$LOCAL" "$REMOTE"
+[difftool]
+        prompt = false
+[alias]
+        latexdiff = diff -t latexdiff
