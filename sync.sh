@@ -3,8 +3,8 @@ my_dir="$(readlink -f "$(dirname "$0")")"
 
 secrets_remote="tmtynkky@melkki.cs.helsinki.fi:secrets.git"
 secrets_dir="$my_dir/secrets"
-file_list="$my_dir/files.list"
 
+uninstall=0
 dry_run=0
 skip_secrets=0
 
@@ -28,11 +28,48 @@ for arg; do
         "-n")
             skip_secrets=1
             shift;;
+        "-u")
+            uninstall=1
+            skip_secrets=1
+            shift;;
         *)
             echo "Invalid arg: $arg"
             exit 1;;
     esac
 done
+
+for file in "$my_dir"/* "$my_dir"/.* ; do
+    file="$(basename "$file")"
+    case "$file" in
+        .|..|.git|.gitignore|share|secrets|sync.sh|.sw*|.*.sw*) continue;;
+    esac
+
+    home_file="$HOME/$file"
+    backup_file="$HOME/$file.bak"
+    dotfiles_file="$my_dir/$file"
+
+    if [ "$uninstall" = 1 ]; then
+        if [ -L "$home_file" ]; then
+            run_cmd rm "$home_file"
+        fi
+    else
+        if [ -L "$home_file" ]; then
+            echo "$home_file: already symlinked"
+        else
+            if [ -e "$home_file" ]; then
+                if [ -e "$backup_file" ]; then
+                    echo "$home_file: already exists and can't make backup $backup_file."
+                    exit 1
+                fi
+                run_cmd mv "$home_file" "$backup_file"
+            fi
+            run_cmd ln -s "$dotfiles_file" "$home_file"
+        fi
+    fi
+done
+
+chmod 700 ~/.ssh      2>/dev/null
+chmod -R 600 ~/.ssh/* 2>/dev/null
 
 if [ $skip_secrets = 0 ]; then
     if [ ! -d "$secrets_dir" ]; then
@@ -42,32 +79,7 @@ if [ $skip_secrets = 0 ]; then
         run_cmd git pull
         popd >/dev/null
     fi
-    run_cmd chmod -R a-rw,u=rwX "$secrets_dir"
+    run_cmd chmod -R a-rw,u=rwX "$secrets_dir" >/dev/null
     echo
 fi
 
-[ ! -f "$file_list" ] && die "$file_list: not found"
-
-for file in $(cat "$file_list"); do
-    file="$(basename "$file")"
-    home_file="$HOME/$file"
-    backup_file="$HOME/$file.bak"
-    dotfiles_file="$my_dir/$file"
-
-    if [ -L "$home_file" ]; then
-        echo "$home_file: already symlinked"
-    elif [ -e "$home_file" -a -e "$backup_file" ]; then
-        echo "$home_file: already exists and can't make backup $backup_file."
-        exit 1
-    elif [ ! -e "$home_file" -a ! -e "$dotfiles_file" ]; then
-        echo "$home_file: missing from dotfiles and homedir"
-        exit 1
-    else
-        if [ ! -e "$dotfiles_file" ]; then
-            run_cmd mv "$home_file" "$dotfiles_file"
-        elif [ -e "$home_file" ]; then
-            run_cmd mv "$home_file" "$backup_file"
-        fi
-        run_cmd ln -s "$dotfiles_file" "$home_file"
-    fi
-done
