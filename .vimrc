@@ -1,14 +1,78 @@
+" Vundle
+set nocompatible               " be iMproved
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Lokaltog/vim-powerline'
+"Bundle 'airblade/vim-gitgutter' " broken?
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+
+Bundle 'junegunn/seoul256.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-eunuch'
+
 syntax on
-set hlsearch
-set incsearch
-set nocompatible
-set autoindent
+
+filetype plugin indent on
+
+set encoding=utf-8
+set laststatus=2
+
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoread            " maybe not this?
+"set textwidth=79       " legacy
+" MRA
+
+"set smarttab
+set autoindent copyindent
+set smartindent         " let's try
+set shiftround
+
+set autochdir           " let's try
+"set nobackup nowritebackup noswapfile  " defaults
+set autoread            " let's try
+"set hidden             " maybe later
+
+set incsearch hlsearch
+set ignorecase infercase smartcase " let's try
+
+set title
+set number          " not nonumber
+"set numberwidth=2  " necessary?
+"set shortmess=atI  " ???
+set ruler
+set showmode
+set showmatch
+set matchtime=0
+set matchpairs+=<:>
+
+if has("wildmenu")
+        set wildignore+=*.a,*.o,*.out,*.beam
+        set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+        set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
+        set wildignore+=*~,*.swp,*.tmp
+        set wildignore+=*.pyc
+        set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
+        set wildmenu
+        set wildmode=longest,list
+endif
+
 set backspace=indent,eol,start
 set showcmd
 if has('mouse')
 	set mouse=a
 endif
-filetype plugin indent on
+
+" Reload changes to .vimrc automatically. XXX: broken
+" autocmd BufWritePost ~/.vimrc source ~/.vimrc
 
 " Dvorak keybinds
 no d h
@@ -28,13 +92,41 @@ no H 8<Down>
 no T 8<Up>
 no D <C-w><C-r>
 
-set tabstop=4
 set expandtab
 set sw=4
 set guifont=Monospace\ 7
-set number
 
-colorscheme elflord
+set t_Co=256
+set background=dark
+let g:seoul256_background=233
+colorscheme seoul256
 
 set so=16
 au BufRead,BufNewFile *.rb set expandtab
+au BufRead,BufNewFile *.rb setlocal sw=2 ts=2
+set updatetime=200
+
+imap <F1> <Esc>
+map  <F1> <Esc>
+no Q <Nop>
+
+map <silent> <F2> :NERDTreeToggle<CR>
+map <silent> <C-N> :NERDTreeToggle<CR>
+
+noremap <C-L> :cn<CR>
+noremap <C-S-L> :cp<CR>
+noremap <C-M> :make<CR>
+noremap <C-S> :wa<CR>
+noremap <C-Q> :q<CR>
+
+let g:NERDTreeMapOpenInTab = '<Nop>'
+let g:NERDTreeMapOpenInTabSilent = '<Nop>'
+let g:NERDTreeMapOpenVSplit = '<Nop>'
+let g:NERDTreeMapHelp = '<Nop>'
+
+" NERD Comment stuff
+noremap  <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
+inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
+noremap  <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
+inoremap <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
+let g:NERDSpaceDelims=1
