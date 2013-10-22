@@ -1,4 +1,9 @@
 " Vundle
+if !isdirectory(expand("~/.vim/bundle/vundle"))
+    !mkdir -p ~/.vim/bundle
+    !git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    let s:bootstrap=1
+endif
 set nocompatible               " be iMproved
 filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -17,8 +22,12 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-eunuch'
 Bundle 'guns/vim-clojure-static'
 
-syntax on
+if exists("s:bootstrap") && s:bootstrap
+    unlet s:bootstrap
+    BundleInstall
+endif
 
+syntax on
 filetype plugin indent on
 
 set encoding=utf-8
@@ -30,7 +39,6 @@ set shiftwidth=4
 set expandtab
 set autoread            " maybe not this?
 "set textwidth=79       " legacy
-" MRA
 
 "set smarttab
 set autoindent copyindent
