@@ -15,6 +15,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-eunuch'
+Bundle 'guns/vim-clojure-static'
 
 syntax on
 
@@ -115,7 +116,7 @@ map <silent> <C-N> :NERDTreeToggle<CR>
 
 noremap <C-L> :cn<CR>
 noremap <C-S-L> :cp<CR>
-noremap <C-M> :make<CR>
+" noremap <C-M> :make<CR>
 noremap <C-S> :wa<CR>
 noremap <C-Q> :q<CR>
 
@@ -127,6 +128,6 @@ let g:NERDTreeMapHelp = '<Nop>'
 " NERD Comment stuff
 noremap  <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
 inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
-noremap  <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
-inoremap <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
+" noremap  <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
+" inoremap <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
 let g:NERDSpaceDelims=1
