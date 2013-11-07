@@ -1,0 +1,33 @@
+#!/bin/bash -x
+
+case "$(hostname -f)" in
+    *.helsinki.fi) ;;
+    *) /usr/bin/google-chrome "$@" 2>/dev/null& disown ;;
+esac
+
+dir=$(readlink -f $HOME/cshome/google-chrome-data/)
+
+doit() {
+    /usr/bin/google-chrome --user-data-dir=$profile "$@" 2>/dev/null&
+    disown
+    exit
+}
+
+# First - find existing session
+for profile in $dir/profile-*; do
+    [ -L $profile/SingletonLock ] || continue
+    case "$(basename $(readlink -f $profile/SingletonLock))" in
+        $(hostname)-*) doit;;
+    esac
+done
+
+# Then - find empty session
+for profile in $dir/profile-*; do
+    [ -L $profile/SingletonLock ] && continue
+    doit
+done
+
+# Else fallback
+notify-send "Chrome is using fallback profile."
+profile=$dir/fallback
+doit

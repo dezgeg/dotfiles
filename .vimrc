@@ -62,6 +62,7 @@ set showmode
 set showmatch
 set matchtime=0
 set matchpairs+=<:>
+set list listchars=tab:\ \ ,trail:.
 
 if has("wildmenu")
         set wildignore+=*.a,*.o,*.out,*.beam
