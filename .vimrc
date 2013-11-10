@@ -21,6 +21,7 @@ Bundle 'junegunn/seoul256.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-eunuch'
 Bundle 'guns/vim-clojure-static'
+Bundle 'rosenfeld/conque-term'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
@@ -124,8 +125,6 @@ map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
 
 noremap <C-L> :cn<CR>
-noremap <C-S-L> :cp<CR>
-" noremap <C-M> :make<CR>
 noremap <C-S> :wa<CR>
 noremap <C-Q> :q<CR>
 
