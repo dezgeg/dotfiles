@@ -5,7 +5,7 @@ case "$(hostname -f)" in
     *) /usr/bin/google-chrome "$@" 2>/dev/null& disown ;;
 esac
 
-dir=$(readlink -f $HOME/cshome/google-chrome-data/)
+dir=$(readlink -f $HOME/google-chrome-data/)
 
 doit() {
     /usr/bin/google-chrome --user-data-dir=$profile "$@" 2>/dev/null&
