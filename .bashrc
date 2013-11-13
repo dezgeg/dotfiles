@@ -71,6 +71,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+export LESS=-RF
+
 PATH=$HOME/bin:$PATH:/sbin:/usr/sbin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export NNTPSERVER=news.gmane.org
