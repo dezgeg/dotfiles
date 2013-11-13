@@ -46,7 +46,7 @@ set autoindent copyindent
 set smartindent         " let's try
 set shiftround
 
-set autochdir           " let's try
+"set autochdir           " complete crap
 "set nobackup nowritebackup noswapfile  " defaults
 set autoread            " let's try
 "set hidden             " maybe later
