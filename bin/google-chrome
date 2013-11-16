@@ -1,8 +1,9 @@
 #!/bin/bash -x
 
 case "$(hostname -f)" in
+    e42-7.cs.helsinki.fi) /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit ;;
     *.helsinki.fi) ;;
-    *) /usr/bin/google-chrome "$@" 2>/dev/null& disown ;;
+    *) /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit ;;
 esac
 
 dir=$(readlink -f $HOME/google-chrome-data/)
