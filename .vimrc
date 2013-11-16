@@ -21,6 +21,7 @@ Bundle 'junegunn/seoul256.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-eunuch'
 Bundle 'guns/vim-clojure-static'
+Bundle 'derekwyatt/vim-scala'
 Bundle 'rosenfeld/conque-term'
 
 if exists("s:bootstrap") && s:bootstrap
