@@ -22,6 +22,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-eunuch'
 Bundle 'guns/vim-clojure-static'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'rosenfeld/conque-term'
 
 if exists("s:bootstrap") && s:bootstrap
