@@ -1,5 +1,6 @@
 [core]
     editor = vim
+    excludesfile = ~/.gitexcludes
 [user]
     name = Tuomas Tynkkynen
     email = dezgeg@gmail.com
