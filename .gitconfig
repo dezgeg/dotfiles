@@ -3,7 +3,7 @@
     excludesfile = ~/.gitexcludes
 [user]
     name = Tuomas Tynkkynen
-    email = dezgeg@gmail.com
+    email = tuomas.tynkkynen@iki.fi
 [color]
     ui = auto
     status = auto

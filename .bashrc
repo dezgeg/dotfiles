@@ -86,3 +86,4 @@ alias clang-trunk='clang++ -xc++ -std=c++11 -pedantic -c -o /dev/null'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
