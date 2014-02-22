@@ -83,3 +83,6 @@ alias reset='\reset; stty -ixon -ixoff'
 alias g++-trunk='LD_LIBRARY_PATH=/dos/gcc-trunk/lib64 /dos/gcc-trunk/bin/g++ -B/usr/lib/x86_64-linux-gnu -xc++ -std=c++11 -pedantic -c -o /dev/null'
 alias gcc-trunk='LD_LIBRARY_PATH=/dos/gcc-trunk/lib64 /dos/gcc-trunk/bin/gcc -B/usr/lib/x86_64-linux-gnu -xc++ -std=c++11 -pedantic -c -o /dev/null'
 alias clang-trunk='clang++ -xc++ -std=c++11 -pedantic -c -o /dev/null'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

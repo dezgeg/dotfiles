@@ -19,6 +19,7 @@ Bundle 'kien/ctrlp.vim'
 
 Bundle 'junegunn/seoul256.vim'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-eunuch'
 Bundle 'guns/vim-clojure-static'
 Bundle 'derekwyatt/vim-scala'
@@ -68,7 +69,7 @@ set matchpairs+=<:>
 set list listchars=tab:\ \ ,trail:.
 
 if has("wildmenu")
-        set wildignore+=*.a,*.o,*.out,*.beam
+        set wildignore+=*.a,*.o,*.d,*.out,*.beam
         set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
         set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
         set wildignore+=*~,*.swp,*.tmp
