@@ -55,6 +55,8 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -72,11 +74,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export LESS=-FRSX
-
-PATH=$HOME/bin:$PATH:/sbin:/usr/sbin
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export NNTPSERVER=news.gmane.org
-alias make='make -j3'
+
 stty -ixon -ixoff
 alias reset='\reset; stty -ixon -ixoff'
 
@@ -84,6 +83,7 @@ alias g++-trunk='LD_LIBRARY_PATH=/dos/gcc-trunk/lib64 /dos/gcc-trunk/bin/g++ -B/
 alias gcc-trunk='LD_LIBRARY_PATH=/dos/gcc-trunk/lib64 /dos/gcc-trunk/bin/gcc -B/usr/lib/x86_64-linux-gnu -xc++ -std=c++11 -pedantic -c -o /dev/null'
 alias clang-trunk='clang++ -xc++ -std=c++11 -pedantic -c -o /dev/null'
 
-### Added by the Heroku Toolbelt
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH="/usr/local/heroku/bin:$PATH"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$HOME/bin:$PATH:/sbin:/usr/sbin
