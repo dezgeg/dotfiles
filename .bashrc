@@ -87,3 +87,5 @@ alias clang-trunk='clang++ -xc++ -std=c++11 -pedantic -c -o /dev/null'
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH=$HOME/bin:$PATH:/sbin:/usr/sbin
+# added by travis gem
+[ -f /home/tmtynkky/.travis/travis.sh ] && source /home/tmtynkky/.travis/travis.sh

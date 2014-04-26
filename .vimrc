@@ -117,7 +117,7 @@ colorscheme seoul256
 
 set so=16
 au BufRead,BufNewFile *.rb set expandtab
-au BufRead,BufNewFile *.rb setlocal sw=2 ts=2
+au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
 set updatetime=200
 
 imap <F1> <Esc>
