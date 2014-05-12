@@ -1,0 +1,38 @@
+URxvt.saveLines: 15000
+URxvt.visualBell: false
+
+URxvt.scrollBar_right: true
+URxvt.scrollstyle: plain
+! ?? does this do anything?
+URxvt.secondaryScroll: true
+
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.keysym.S-C-C: perl:clipboard:copy
+URxvt.keysym.S-C-V: perl:clipboard:paste
+
+! No keycap mode crap.
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt.perl-ext-common: selection,readline,font-size
+URxvt.perl-ext: mark-yank-urls,clipboard
+
+! Alt-U: yank recent urls
+URxvt.keysym.M-o: perl:mark-yank-urls:activate_mark_mode
+URxvt.underlineURLs: true
+URxvt.perl-lib: /cs/fs/home/tmtynkky/.urxvt/
+URxvt.urlLauncher: google-chrome
+
+!URxvt.keysym.C-S-plus: perl:font-size:increase
+!URxvt.keysym.C-S-underscore: perl:font-size:decrease
+URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
+
+URxvt.selection.pattern-0: >>>[ ]+(.+)
+URxvt.selection.pattern-1: .+?@.+? .+? %%?[ ]+(.+)
+
+URxvt*background: #121212
+URxvt*foreground: #eee8d5
+URxvt*cursorColor: #93a1a1
+URxvt*pointerColorBackground:#586e75
+URxvt*pointerColorForeground:#93a1a1
