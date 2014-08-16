@@ -75,6 +75,7 @@ fi
 
 export LESS=-FRSX
 export NNTPSERVER=news.gmane.org
+export QT_STYLE_OVERRIDE=plastique
 
 stty -ixon -ixoff
 alias reset='\reset; stty -ixon -ixoff'
@@ -86,6 +87,7 @@ alias clang-trunk='clang++ -xc++ -std=c++11 -pedantic -c -o /dev/null'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/Qt/5.3/gcc_64/bin:$PATH"
 export PATH=$HOME/bin:$PATH:/sbin:/usr/sbin
 # added by travis gem
 [ -f /home/tmtynkky/.travis/travis.sh ] && source /home/tmtynkky/.travis/travis.sh
