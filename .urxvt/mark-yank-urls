@@ -35,9 +35,14 @@ my %keymap = (
 my $mark_mode_active = 0;
 my $url_selected = -1;
 my %mod = ( 'control' => 0, 'shift' => 0 );
+
 my $dbh = DBI->connect("dbi:SQLite:dbname=$ENV{HOME}/.urxvt/urls.sqlite", { RaiseError => 1 }) or die "Can't open URL database";
+
+$dbh->prepare('CREATE TABLE IF NOT EXISTS urls (url VARCHAR UNIQUE NOT NULL);')->execute();
+
 my $insert_url_query = $dbh->prepare('INSERT INTO urls VALUES (?);') or die "Can't prepare insert query";
 my $is_visited_url_query = $dbh->prepare('SELECT COUNT(*) FROM urls WHERE url = ?;') or die "Can't prepare select query";
+
 my $overlay;
 my @urldb;
 
