@@ -1,0 +1,8 @@
+#!/bin/bash
+current_next="$(cat localversion-next  | sed -e 's/-//')"
+
+if [ "$1" = "-i" ]; then
+    git rebase -i "$current_next"
+else
+    git rebase "$current_next" "$(git symbolic-ref HEAD --short --quiet || echo HEAD)" --onto $(git tag | grep '^next-' | tail -n1)
+fi
