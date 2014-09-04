@@ -1,0 +1,4 @@
+#!/bin/bash
+which g++-4.8 >/dev/null && exec g++-4.8 "$@"
+which g++-4.7 >/dev/null && exec g++-4.7 "$@"
+exec g++ "$@"
