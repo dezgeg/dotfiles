@@ -18,8 +18,11 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+F1 exec google-chrome
+bindsym $mod+F1 exec $HOME/bin/google-chrome
 bindsym $mod+Return exec urxvt
+bindsym XF86AudioRaiseVolume exec $HOME/bin/pa-volume plus
+bindsym XF86AudioLowerVolume exec $HOME/bin/pa-volume minus
+bindsym XF86AudioMute exec $HOME/bin/pa-volume mute
 
 # kill focused window
 bindsym $mod+c kill
