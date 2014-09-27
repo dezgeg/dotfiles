@@ -1,6 +1,7 @@
 #!/bin/bash -e
 my_dir="$(readlink -f "$(dirname "$0")")"
 
+dotfiles_remote="git@github.com:dezgeg/dotfiles.git"
 secrets_remote="tmtynkky@melkki.cs.helsinki.fi:secrets.git"
 secrets_dir="$my_dir/secrets"
 
@@ -81,5 +82,11 @@ if [ $skip_secrets = 0 ]; then
     fi
     run_cmd chmod -R a-rw,u=rwX "$secrets_dir" >/dev/null
     echo
-fi
 
+    pushd "$my_dir" >/dev/null
+    git remote rm origin
+    git remote add origin "$dotfiles_remote"
+    git fetch origin
+    git branch -u origin/master master
+    popd >/dev/null
+fi

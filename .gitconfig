@@ -21,7 +21,9 @@
     puff = pull --ff-only
     purr = pull --rebase
 [sendemail]
-	smtpserver = smtp.gmail.com
-	smtpserverport = 587
-	smtpencryption = tls
-	smtpuser = dezgeg@gmail.com
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = dezgeg@gmail.com
+[push]
+    default = simple
