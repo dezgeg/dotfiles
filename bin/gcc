@@ -1,4 +1,4 @@
 #!/bin/bash
-which gcc-4.8 >/dev/null && exec gcc-4.8 "$@"
-which gcc-4.7 >/dev/null && exec gcc-4.7 "$@"
-exec gcc "$@"
+which gcc-4.8 >/dev/null 2>/dev/null && exec gcc-4.8 "$@"
+which gcc-4.7 >/dev/null 2>/dev/null && exec gcc-4.7 "$@"
+exec /usr/bin/gcc "$@"
