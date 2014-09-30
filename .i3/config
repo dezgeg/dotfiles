@@ -4,7 +4,11 @@
 
 hide_edge_borders both
 
+for_window [title="Volume Control"] floating enable; resize shrink up 50 ppt; resize shrink left 100 ppt
+for_window [title="HTOP"] floating enable
+
 set $mod Mod4
+floating_modifier $mod
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -13,8 +17,12 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+F1 exec $HOME/bin/google-chrome
 bindsym $mod+Return exec $HOME/bin/smart-terminal
+bindsym $mod+F1 exec $HOME/bin/google-chrome
+
+bindsym $mod+q exec $HOME/bin/i3-scratchpad title HTOP "urxvt -title 'HTOP' -e htop"
+bindsym $mod+j exec $HOME/bin/i3-scratchpad title "Volume Control" pavucontrol
+
 bindsym XF86AudioRaiseVolume exec $HOME/bin/pa-volume plus
 bindsym XF86AudioLowerVolume exec $HOME/bin/pa-volume minus
 bindsym XF86AudioMute exec $HOME/bin/pa-volume mute
@@ -52,10 +60,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+semicolon split h
+bindsym $mod+w split h
 
 # split in vertical orientation
-bindsym $mod+q split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+u fullscreen
