@@ -4,7 +4,13 @@ case "$(hostname -f)" in
     sf-2.cs.helsinki.fi) /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit ;;
     e42-7.cs.helsinki.fi) /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit ;;
     *.helsinki.fi) ;;
-    *) /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit ;;
+    *)
+        if [ -f /usr/bin/google-chrome ]; then
+            /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit
+        else
+            /usr/bin/google-chrome-stable "$@" 2>/dev/null& disown; exit
+        fi
+        ;;
 esac
 
 dir=$(readlink -f $HOME/google-chrome-data/)

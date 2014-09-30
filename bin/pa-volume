@@ -79,3 +79,4 @@ case "$1" in
         get)
                 get
 esac
+killall -USR1 i3status &>/dev/null
