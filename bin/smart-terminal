@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'json'
+
+irc_running = !`pgrep -f 'urxvt -title IRC'`.empty?
+exec 'exec urxvt' if irc_running
+
+workspace = JSON.parse(`i3-msg -t get_outputs`).select {|w| w['active'] }.first['current_workspace']
+if workspace == '1'
+    exec 'exec urxvt -title IRC -e sh -c "ssh melkinkari -t screen -rd; bash"'
+else
+    exec 'exec urxvt'
+end
