@@ -25,6 +25,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rosenfeld/conque-term'
+Bundle 'wting/rust.vim'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
