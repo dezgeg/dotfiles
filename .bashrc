@@ -86,9 +86,11 @@ alias gcc-trunk='LD_LIBRARY_PATH=/dos/gcc-trunk/lib64 /dos/gcc-trunk/bin/gcc -B/
 alias clang-trunk='clang++ -xc++ -std=c++11 -pedantic -c -o /dev/null'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/Qt/5.3/gcc_64/bin:$PATH"
-export PATH=$HOME/bin:$PATH:/sbin:/usr/sbin
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/sbin:/usr/sbin"
 # added by travis gem
 [ -f /home/tmtynkky/.travis/travis.sh ] && source /home/tmtynkky/.travis/travis.sh
