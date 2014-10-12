@@ -1,0 +1,21 @@
+#!/bin/bash
+tmpf=$(mktemp)
+errf=$(mktemp)
+
+/usr/bin/gcov-4.8 "$@" > "$tmpf" 2> "$errf"
+status=$?
+if [ "$status" != 0 ] || grep -q '^Cannot' "$errf"; then
+    cat "$tmpf"
+    cat "$errf" | sed -e 's/^Cannot/cannot/' 1>&2
+    rm -f "$tmpf" "$errf"
+    exit "$status"
+fi
+
+grep '^Creating' < "$tmpf" | sed -e "s/^Creating '\(.*\)'$/\1/" | while read -r file; do
+        # "#####:  268:                    assert(0);"
+        perl -pe 's/^(\s*#+:\s*\d+:\s*(?:assert\s*\(\s*(?:0|false)\s*\)|unreachable\s*\(\s*\))\s*;)(.*)$/$1 \/* GCOV_EXCL_LINE *\/ $2/' -i "$file"
+done
+cat "$tmpf"
+cat "$errf" 1>&2
+rm -f "$tmpf" "$errf"
+exit 0
