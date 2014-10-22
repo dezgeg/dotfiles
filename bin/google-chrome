@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 case "$(hostname -f)" in
     sf-2.cs.helsinki.fi) /usr/bin/google-chrome "$@" 2>/dev/null& disown; exit ;;
