@@ -6,6 +6,7 @@ alias grep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias halt='poweroff'
 alias hd='hexdump -C'
 alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
 alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
@@ -20,6 +21,14 @@ alias ....='cd ../../..'
 
 stty -ixon -ixoff
 alias reset='\reset; stty -ixon -ixoff'
+
+setproc() {
+    echo $2 | sudo tee $1 >/dev/null
+}
+
+reload () {
+    exec "${SHELL}" "$@"
+}
 
 export EDITOR=vim
 export VISUAL=$EDITOR

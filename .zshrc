@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="skaro"
+ZSH_THEME="dpoggi"
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git dirhistory)
@@ -27,4 +27,20 @@ bindkey "\e[1;3B"   dirhistory_zle_dirhistory_back
 bindkey "\e\e[B"    dirhistory_zle_dirhistory_back # Putty
 bindkey "\eO3B"     dirhistory_zle_dirhistory_back # GNU screen
 
+alias -g E='2>&1'
 alias -g L='2>&1 | less'
+alias -g N='&>/dev/null'
+alias -g H='| head'
+alias -g T='| tail'
+
+if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="cyan"; fi
+local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+
+# Customized prompt based on dpoggi
+PROMPT='%j %{$fg[$NCOLOR]%}%m\
+%{$reset_color%} %{$fg[green]%}%~\
+ $(git_prompt_info)\
+%{$fg[red]%}%(!.#.»)%{$reset_color%} '
+PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
+RPS1='${return_code} %{$fg[yellow]%}%D{%H:%M:%S}%{$reset_color%}'
+ZSH_THEME_GIT_PROMPT_SUFFIX="$ZSH_THEME_GIT_PROMPT_SUFFIX "
