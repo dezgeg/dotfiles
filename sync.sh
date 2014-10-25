@@ -87,6 +87,6 @@ if [ $skip_secrets = 0 ]; then
     git remote rm origin
     git remote add origin "$dotfiles_remote"
     git fetch origin
-    git branch -u origin/master master
+    git push -u origin master
     popd >/dev/null
 fi
