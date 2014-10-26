@@ -28,15 +28,20 @@ bindkey "\e\e[B"    dirhistory_zle_dirhistory_back # Putty
 bindkey "\eO3B"     dirhistory_zle_dirhistory_back # GNU screen
 
 alias -g E='2>&1'
+alias -g G='| grep'
+alias -g H='| head'
 alias -g L='2>&1 | less'
 alias -g N='&>/dev/null'
-alias -g H='| head'
 alias -g T='| tail'
 
+setopt   glob_complete      # Tab on 'ls foo*' gives completion choices for foo*
+setopt   list_packed        # More compact completion list columns
+unsetopt auto_menu          # More bash-style completion
+
+# Customized prompt based on dpoggi
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="cyan"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-# Customized prompt based on dpoggi
 PROMPT='%j %{$fg[$NCOLOR]%}%m\
 %{$reset_color%} %{$fg[green]%}%~\
  $(git_prompt_info)\

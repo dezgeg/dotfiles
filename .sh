@@ -2,6 +2,14 @@ alias ls='ls -F --color=auto'
 alias la='ls -lah'
 alias latr='ls -latr'
 
+alias l=la
+alias ll='la --color | less'
+
+alias ps='ps u'
+alias psu='ps ux'
+alias psa='ps aux'
+alias psgrep='pgrep -f'
+
 alias grep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
