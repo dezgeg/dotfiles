@@ -1,4 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
+if ! [ -d "$ZSH" ]; then
+    git clone git://github.com/robbyrussell/oh-my-zsh.git "$ZSH"
+fi
 
 ZSH_THEME="dpoggi"
 COMPLETION_WAITING_DOTS="true"
