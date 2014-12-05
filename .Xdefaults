@@ -31,8 +31,25 @@ URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
 URxvt.selection.pattern-0: >>>[ ]+(.+)
 URxvt.selection.pattern-1: .+?@.+? .+? %%?[ ]+(.+)
 
-URxvt*background: #121212
+URxvt*background: #000000
 URxvt*foreground: #eee8d5
 URxvt*cursorColor: #93a1a1
 URxvt*pointerColorBackground:#586e75
 URxvt*pointerColorForeground:#93a1a1
+
+URxvt*color0: #000000
+URxvt*color1: #FF6B68
+URxvt*color2: #007F00
+URxvt*color3: #CDCD00
+URxvt*color4: #5394EC
+URxvt*color5: #FF70FF
+URxvt*color6: #33CCCC
+URxvt*color7: #999999
+URxvt*color8: #555555
+URxvt*color9: #FF8785
+URxvt*color10: #70FF70
+URxvt*color11: #FFFF00
+URxvt*color12: #7EAEF1
+URxvt*color13: #FF99FF
+URxvt*color14: #6CDADA
+URxvt*color15: #BBBBBB
