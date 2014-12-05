@@ -37,6 +37,7 @@ alias hd='hexdump -C'
 alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
 alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
 
+alias tree='tree -C'
 lessalias treel 'tree -C'
 lessalias makel 'make -j1'
 
@@ -45,6 +46,14 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+alias gcp='git checkout -p'
+alias gl='git log'
+alias gpl='git pull'
+alias gpr='git pull --rebase'
+alias gri='git rebase -i'
+alias gs='git status'
+alias gsh='git show HEAD'
+
 stty -ixon -ixoff
 alias reset='\reset; stty -ixon -ixoff'
 
@@ -52,9 +61,18 @@ setproc() {
     echo $2 | sudo tee $1 >/dev/null
 }
 
-reload () {
+reload() {
     exec "${SHELL}" "$@"
 }
+
+xrun() {
+    $1 >/dev/null 2>/dev/null </dev/null &
+    disown
+}
+
+alias clion='xrun ~/opt/clion-140.569.17/bin/clion.sh'
+alias idea='xrun ~/opt/idea-IU-139.224.1/bin/idea.sh'
+alias pycharm='xrun ~/opt/pycharm-4.0/bin/pycharm.sh'
 
 export EDITOR=vim
 export VISUAL=$EDITOR

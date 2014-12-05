@@ -25,3 +25,7 @@
     smtpserverport = 587
     smtpencryption = tls
     smtpuser = dezgeg@gmail.com
+[push]
+    default = simple
+[diff]
+    noprefix = true
