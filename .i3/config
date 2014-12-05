@@ -3,6 +3,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 hide_edge_borders both
+workspace_layout tabbed
 
 for_window [title="Volume Control"] floating enable; resize shrink up 50 ppt; resize shrink left 100 ppt
 for_window [title="HTOP"] floating enable
@@ -25,6 +26,8 @@ bindsym $mod+j exec $HOME/bin/i3-scratchpad title "Volume Control" pavucontrol
 
 bindsym XF86AudioRaiseVolume exec $HOME/bin/pa-volume plus
 bindsym XF86AudioLowerVolume exec $HOME/bin/pa-volume minus
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 10
 bindsym XF86AudioMute exec $HOME/bin/pa-volume mute
 
 # kill focused window
