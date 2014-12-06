@@ -1,14 +1,32 @@
+function normalize_command_line () {
+    # Declaring a function resolves all aliases in the body.
+    eval "function _f() {
+        $1
+    }"
+    declare -f _f | head -n -1 | tail -n -1
+    unset -f _f
+}
+
+function lessalias() {
+    # Use this instead of 'alias ll="ls | less"', so 'll foo*' works as well.
+    alias $1="lesswrap $(normalize_command_line $2)"
+}
+
+alias tree='tree -C'
 alias ls='ls -F --color=auto'
 alias la='ls -lah'
 alias latr='ls -latr'
 
 alias l=la
-alias ll='la --color | less'
+lessalias ll 'la --color'
 
 alias ps='ps u'
 alias psu='ps ux'
 alias psa='ps aux'
 alias psgrep='pgrep -f'
+
+lessalias psul psu
+lessalias psal psa
 
 alias grep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -19,8 +37,8 @@ alias hd='hexdump -C'
 alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
 alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
 
-alias treel='tree -C | less'
-alias makel='make -j1 2>&1 | less'
+lessalias treel 'tree -C'
+lessalias makel 'make -j1'
 
 alias cdr='d=$(git rev-parse --show-toplevel) && cd "$d"'
 alias ..='cd ..'

@@ -41,6 +41,10 @@ setopt   glob_complete      # Tab on 'ls foo*' gives completion choices for foo*
 setopt   list_packed        # More compact completion list columns
 unsetopt auto_menu          # More bash-style completion
 
+if [ "$WINDOWID" != "" ]; then
+    setopt ignore_eof       # Ctrl-D only exits sudoed or ssh'd shells, not outernmost shells
+fi
+
 # Customized prompt based on dpoggi
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="cyan"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
