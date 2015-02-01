@@ -37,6 +37,7 @@ alias hd='hexdump -C'
 alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
 alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
 
+alias gdb='gdb -quiet'
 alias tree='tree -C'
 lessalias treel 'tree -C'
 lessalias makel 'make -j1'
@@ -46,6 +47,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+alias git=hub
 alias gcp='git checkout -p'
 alias gl='git log'
 alias gpl='git pull'
@@ -53,6 +55,7 @@ alias gpr='git pull --rebase'
 alias gri='git rebase -i'
 alias gs='git status'
 alias gsh='git show HEAD'
+unalias gsd 2>/dev/null
 
 stty -ixon -ixoff
 alias reset='\reset; stty -ixon -ixoff'
@@ -66,13 +69,14 @@ reload() {
 }
 
 xrun() {
-    $1 >/dev/null 2>/dev/null </dev/null &
-    disown
+    # &! == put to background & disown (in Zsh only???)
+    $1 >/dev/null 2>/dev/null </dev/null &!
 }
 
-alias clion='xrun ~/opt/clion-140.569.17/bin/clion.sh'
+alias clion='xrun ~/opt/clion-140.1221.2/bin/clion.sh'
 alias idea='xrun ~/opt/idea-IU-139.224.1/bin/idea.sh'
 alias pycharm='xrun ~/opt/pycharm-4.0/bin/pycharm.sh'
+alias rubymine='xrun ~/opt/RubyMine-7.0/bin/rubymine.sh'
 
 export EDITOR=vim
 export VISUAL=$EDITOR
@@ -80,9 +84,7 @@ export VISUAL=$EDITOR
 export LESS=-FRSX
 export NNTPSERVER=news.gmane.org
 export QT_STYLE_OVERRIDE=plastique
+export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH="$HOME/.rvm/bin:$PATH"
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="$HOME/Qt/5.3/gcc_64/bin:$PATH"
 export PATH="$PATH:/sbin:/usr/sbin"
