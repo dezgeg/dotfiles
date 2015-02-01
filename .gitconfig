@@ -29,3 +29,5 @@
     default = simple
 [diff]
     noprefix = true
+[rebase]
+    autostash = true
