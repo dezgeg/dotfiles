@@ -1,0 +1,26 @@
+// Put this file in /usr/share/X11/xkb/symbols/arkkudvorak
+// Then either:
+// - setxkbmap arkkudvorak
+// - create /etc/X11/xorg.conf.d/00-keyboard.conf with the following contents:
+//     # Read and parsed by systemd-localed. It's probably wise not to edit this file
+//     # manually too freely.
+//     Section "InputClass"
+//             Identifier "system-keyboard"
+//             MatchIsKeyboard "on"
+//             Option "XkbLayout" "arkkudvorak"
+//             Option "XkbModel" "pc104"
+//     EndSection
+
+partial default alphanumeric_keys
+xkb_symbols "arkkudvorak" {
+
+    include "us(dvorak)"
+    name[Group1]= "Arkkudvorak";
+
+    key <AE04> { [         4,   dollar,     EuroSign ] };
+    key <AC01> { [         a,   A,          Adiaeresis ] };
+    key <AC02> { [         o,   O,          Odiaeresis ] };
+    key <LSGT> { [ adiaeresis,  odiaeresis, NoSymbol ] };
+
+    include "level3(ralt_switch)"
+};
