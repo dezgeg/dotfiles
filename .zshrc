@@ -5,11 +5,26 @@ fi
 
 ZSH_THEME="dpoggi"
 COMPLETION_WAITING_DOTS="true"
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git dirhistory)
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 . ~/.sh
+
+# Ctrl-Backspace
+bindkey "\e[33~" backward-kill-word
+
+# Alt-{dhtn}
+bindkey "\033[15~" backward-char
+bindkey "\033[17~" down-line-or-history
+bindkey "\033[18~" up-line-or-history
+bindkey "\033[19~" forward-char
+
+# Alt-{bwie}
+bindkey "\033[20~" backward-word
+bindkey "\033[21~" forward-word
+bindkey "\033[23~" beginning-of-line
+bindkey "\033[24~" end-of-line
 
 function up() {
     zle kill-buffer

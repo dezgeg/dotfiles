@@ -114,3 +114,39 @@ let g:NERDTreeMapHelp = '<Nop>'
 " noremap  <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
 " inoremap <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
 let g:NERDSpaceDelims=1
+
+" Navigation in insert mode, depends on urxvt hacks (also in inputrc)
+" Alt-{dhtn, bw}: as usual
+" Alt-{ie}: ^ and $
+inoremap <F5> <Left>
+inoremap <F6> <Down>
+inoremap <F7> <Up>
+inoremap <F8> <Right>
+inoremap <F9> <C-Left>
+inoremap <F10> <C-Right>
+inoremap <F11> <Home>
+inoremap <F12> <End>
+
+" Do it for normal mode too.
+noremap <F5> <Left>
+noremap <F6> <Down>
+noremap <F7> <Up>
+noremap <F8> <Right>
+noremap <F9> b
+noremap <F10> w
+noremap <F11> ^
+noremap <F12> $
+
+" And command-line mode as well.
+cnoremap <F5> <Left>
+cnoremap <F6> <Down>
+cnoremap <F7> <Up>
+cnoremap <F8> <Right>
+cnoremap <F9> <C-Left>
+cnoremap <F10> <C-Right>
+cnoremap <F11> <Home>
+cnoremap <F12> <End>
+
+" Ctrl-Backspace
+imap <Esc>[33~ <C-W>
+cmap <Esc>[33~ <C-W>

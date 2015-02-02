@@ -24,6 +24,24 @@ URxvt.underlineURLs: true
 URxvt.perl-lib: /home/tmtynkky/.urxvt/
 URxvt.urlLauncher: /home/tmtynkky/bin/google-chrome
 
+! Fixterms-compatible mappings
+URxvt.keysym.Control-slash:      \033[47;5u
+URxvt.keysym.Control-BackSpace:  \033[33~
+URxvt.keysym.Control-Up:    \033[1;5A
+URxvt.keysym.Control-Down:  \033[1;5B
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
+! Allocates F5-F12 for other purposes :(
+URxvt.keysym.M-d: \033[15~
+URxvt.keysym.M-h: \033[17~
+URxvt.keysym.M-t: \033[18~
+URxvt.keysym.M-n: \033[19~
+URxvt.keysym.M-b: \033[20~
+URxvt.keysym.M-w: \033[21~
+URxvt.keysym.M-i: \033[23~
+URxvt.keysym.M-e: \033[24~
+
 !URxvt.keysym.C-S-plus: perl:font-size:increase
 !URxvt.keysym.C-S-underscore: perl:font-size:decrease
 URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1
