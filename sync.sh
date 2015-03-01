@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 my_dir="$(readlink -f "$(dirname "$0")")"
 
 dotfiles_remote="git@github.com:dezgeg/dotfiles.git"

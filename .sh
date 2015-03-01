@@ -13,7 +13,9 @@ function lessalias() {
 }
 
 alias tree='tree -C'
-alias ls='ls -F --color=auto'
+if [ "$(uname)" = 'Linux' ]; then
+    alias ls='ls -F --color=auto'
+fi
 alias la='ls -lah'
 alias latr='ls -latr'
 
@@ -34,7 +36,10 @@ alias egrep='egrep --color=auto'
 
 alias halt='poweroff'
 alias hd='hexdump -C'
-alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
+
+if [ "$(uname)" = 'Linux' ]; then
+    alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
+fi
 alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
 
 alias gdb='gdb -quiet'
