@@ -3,7 +3,7 @@ function normalize_command_line () {
     eval "function _f() {
         $1
     }"
-    declare -f _f | head -n -1 | tail -n -1
+    declare -f _f | head -n 2 | tail -n 1
     unset -f _f
 }
 
