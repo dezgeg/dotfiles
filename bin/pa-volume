@@ -6,7 +6,7 @@
 # konrad: more reliable way to autodetect default sink
  
 # get default sink name
-SINK_NAME=$(pactl stat | grep "alsa_output" | perl -a -n -e 'print $F[2]')
+SINK_NAME=$(pactl info | grep "Default Sink" | perl -a -n -e 'print $F[2]')
  
 # set max allowed volume; 0x10000 = 100%
 VOL_MAX="0x10000"
