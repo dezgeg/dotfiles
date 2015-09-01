@@ -1,6 +1,10 @@
 URxvt.saveLines: 15000
 URxvt.visualBell: false
 
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+
 URxvt.scrollBar_right: true
 URxvt.scrollstyle: plain
 ! ?? does this do anything?
