@@ -34,6 +34,7 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rosenfeld/conque-term'
 Bundle 'wting/rust.vim'
+Bundle 'spwhitt/vim-nix'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
@@ -46,6 +47,7 @@ filetype plugin indent on
 set encoding=utf-8
 set laststatus=2
 
+set virtualedit=onemore
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
@@ -101,10 +103,12 @@ set background=dark
 let g:seoul256_background=233
 colorscheme seoul256
 
+set timeoutlen=20
 set so=16
 au BufRead,BufNewFile *.rb set expandtab
 au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
 set updatetime=200
+" set clipboard=unnamed,autoselect
 
 let g:NERDTreeMapOpenInTab = '<Nop>'
 let g:NERDTreeMapOpenInTabSilent = '<Nop>'
