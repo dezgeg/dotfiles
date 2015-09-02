@@ -53,6 +53,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias git=hub
+alias gap='git add -p'
 alias gcp='git checkout -p'
 alias gl='git log'
 alias gpl='git pull'
@@ -78,10 +79,10 @@ xrun() {
     $1 >/dev/null 2>/dev/null </dev/null &!
 }
 
-alias clion='xrun ~/opt/clion-140.1221.2/bin/clion.sh'
-alias idea='xrun ~/opt/idea-IU-139.224.1/bin/idea.sh'
+alias clion='xrun ~/opt/clion-1.0/bin/clion.sh'
+alias idea='xrun ~/opt/ideaIU-14.1.4/bin/idea.sh'
 alias pycharm='xrun ~/opt/pycharm-4.0/bin/pycharm.sh'
-alias rubymine='xrun ~/opt/RubyMine-7.0/bin/rubymine.sh'
+alias rubymine='xrun ~/opt/RubyMine-7.1.4/bin/rubymine.sh'
 
 export EDITOR=vim
 export VISUAL=$EDITOR
