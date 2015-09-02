@@ -31,3 +31,5 @@
     noprefix = true
 [rebase]
     autostash = true
+[github]
+	user = dezgeg
