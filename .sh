@@ -94,5 +94,6 @@ export NNTPSERVER=news.gmane.org
 export QT_STYLE_OVERRIDE=plastique
 export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 
+if [ -e /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$PATH:/sbin:/usr/sbin"
