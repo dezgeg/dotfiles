@@ -52,7 +52,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias git=hub
+if which hub >/dev/null 2>/dev/null; then
+    alias git=hub
+fi
 alias gap='git add -p'
 alias gcp='git checkout -p'
 alias gl='git log'
