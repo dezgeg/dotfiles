@@ -3,7 +3,7 @@ set -e
 my_dir="$(readlink -f "$(dirname "$0")")"
 
 dotfiles_remote="git@github.com:dezgeg/dotfiles.git"
-secrets_remote="tmtynkky@melkki.cs.helsinki.fi:secrets.git"
+secrets_remote="tmtynkky@melkki.cs.helsinki.fi:cshome/secrets.git"
 secrets_dir="$my_dir/secrets"
 
 uninstall=0
