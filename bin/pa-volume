@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
  
 # CHANGES, RE-VIEWS/WRITES, IMPROVEMENTS:
 # mhasko: functions; VOL-steps; 
