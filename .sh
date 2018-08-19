@@ -99,3 +99,5 @@ if [ -e $HOME/.cargo/env ]; then source $HOME/.cargo/env; fi
 if [ -e /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$PATH:/sbin:/usr/sbin"
+
+umask 0022
