@@ -93,7 +93,9 @@ export LESS=-FRSX
 export NNTPSERVER=news.gmane.org
 export QT_STYLE_OVERRIDE=plastique
 export JAVA_HOME=/usr/lib/jvm/java-8-jdk
+export NIXTEST_EXTRA_ARGS='--iteration 1'
 
+if [ -e $HOME/.cargo/env ]; then source $HOME/.cargo/env; fi
 if [ -e /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$PATH:/sbin:/usr/sbin"
