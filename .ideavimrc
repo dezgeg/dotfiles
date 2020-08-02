@@ -18,6 +18,9 @@ noremap j d
 noremap l n
 noremap L N
 
+" Do not put stuff to clipboard with x
+noremap x "_x
+
 noremap Q <Nop>
 
 noremap <C-S> :wa<CR>
