@@ -35,6 +35,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'rosenfeld/conque-term'
 Bundle 'wting/rust.vim'
 Bundle 'spwhitt/vim-nix'
+Bundle 'tikhomirov/vim-glsl'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
@@ -90,9 +91,6 @@ set showcmd
 if has('mouse')
 	set mouse=a
 endif
-
-" Reload changes to .vimrc automatically. XXX: broken
-" autocmd BufWritePost ~/.vimrc source ~/.vimrc
 
 set expandtab
 set sw=4
@@ -154,3 +152,9 @@ cnoremap <F12> <End>
 " Ctrl-Backspace
 imap <Esc>[33~ <C-W>
 cmap <Esc>[33~ <C-W>
+
+" https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
+let CursorColumnI = 0
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif

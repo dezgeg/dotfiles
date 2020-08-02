@@ -18,10 +18,6 @@ no j d
 no l n
 no L N
 
-" TODO: I never use these
-no - $
-no _ ^
-
 no Q <Nop>
 
 " F1 = goto last edit
