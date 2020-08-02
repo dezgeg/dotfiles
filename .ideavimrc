@@ -1,34 +1,27 @@
 " Dvorak homerow
 " Keep t/T as 'till char' in visual/operator-pending mode
-no d h
-no h j
+noremap d h
+noremap h j
 nnoremap t k
 vnoremap t k
-no n l
+noremap n l
 
 " Shifted Dvorak homerow navigation
-no D <Nop>
-no H 8<Down>
+noremap H 8<Down>
 nnoremap T 8<Up>
 vnoremap T 8<Up>
-no N <C-w><C-w>
+noremap D <Nop>
+noremap N <C-w><C-w>
 
 " Remap useful keys lost by Dvorak binds
-no j d
-no l n
-no L N
+noremap j d
+noremap l n
+noremap L N
 
-no Q <Nop>
+noremap Q <Nop>
 
-" F1 = goto last edit
-no  <F1> `.
-ino <F1> <Nop>
-" F2 = goto last exit
-no  <F2> `"
-ino <F2> <Nop>
-
-no <C-S> :wa<CR>
-no <C-Q> :q<CR>
+noremap <C-S> :wa<CR>
+noremap <C-Q> :q<CR>
 
 set showmode
 set incsearch hlsearch

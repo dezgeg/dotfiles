@@ -53,7 +53,6 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set autoread            " maybe not this?
 "set textwidth=79       " legacy
 
 "set smarttab
@@ -61,7 +60,6 @@ set autoindent copyindent
 set smartindent         " let's try
 set shiftround
 
-"set autochdir           " complete crap
 "set nobackup nowritebackup noswapfile  " defaults
 set autoread            " let's try
 "set hidden             " maybe later
