@@ -19,9 +19,7 @@ inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
 
 Bundle 'gmarik/vundle'
 
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/vim-powerline'
-"Bundle 'airblade/vim-gitgutter' " broken?
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 
@@ -29,12 +27,6 @@ Bundle 'junegunn/seoul256.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-eunuch'
-Bundle 'guns/vim-clojure-static'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'rosenfeld/conque-term'
-Bundle 'wting/rust.vim'
-Bundle 'spwhitt/vim-nix'
 Bundle 'tikhomirov/vim-glsl'
 
 if exists("s:bootstrap") && s:bootstrap
@@ -53,7 +45,6 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-"set textwidth=79       " legacy
 
 "set smarttab
 set autoindent copyindent
@@ -74,20 +65,20 @@ set matchpairs+=<:>
 set list listchars=tab:\ \ ,trail:.
 
 if has("wildmenu")
-        set wildignore+=*.a,*.o,*.d,*.out,*.beam
-        set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-        set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
-        set wildignore+=*~,*.swp,*.tmp
-        set wildignore+=*.pyc
-        set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
-        set wildmenu
-        set wildmode=longest,list
+    set wildignore+=*.a,*.o,*.d,*.out,*.beam
+    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+    set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
+    set wildignore+=*~,*.swp,*.tmp
+    set wildignore+=*.pyc
+    set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
+    set wildmenu
+    set wildmode=longest,list
 endif
 
 set backspace=indent,eol,start
 set showcmd
 if has('mouse')
-	set mouse=a
+    set mouse=a
 endif
 
 set expandtab
