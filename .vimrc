@@ -81,14 +81,17 @@ if has('mouse')
     set mouse=a
 endif
 
-set expandtab
-set sw=4
 set guifont=Monospace\ 7
 
 set t_Co=256
 set background=dark
 let g:seoul256_background=233
 colorscheme seoul256
+
+" Trailing whitespace - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
 
 set timeoutlen=20
 set so=16
