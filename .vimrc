@@ -114,41 +114,33 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 
-" Navigation in insert mode, depends on urxvt hacks (also in inputrc)
+" Navigation in insert mode
 " Alt-{dhtn, bw}: as usual
-" Alt-{ie}: ^ and $
-inoremap <F5> <Left>
-inoremap <F6> <Down>
-inoremap <F7> <Up>
-inoremap <F8> <Right>
-inoremap <F9> <C-Left>
-inoremap <F10> <C-Right>
-inoremap <F11> <Home>
-inoremap <F12> <End>
-
-" Do it for normal mode too.
-noremap <F5> <Left>
-noremap <F6> <Down>
-noremap <F7> <Up>
-noremap <F8> <Right>
-noremap <F9> b
-noremap <F10> w
-noremap <F11> ^
-noremap <F12> $
+" Alt-{0^}: ^ and $
+inoremap <Esc>d <Left>
+inoremap <Esc>h <Down>
+inoremap <Esc>t <Up>
+inoremap <Esc>n <Right>
+inoremap <Esc>b <C-Left>
+inoremap <Esc>w <C-Right>
+inoremap <Esc>^ <Home>
+inoremap <Esc>$ <End>
 
 " And command-line mode as well.
-cnoremap <F5> <Left>
-cnoremap <F6> <Down>
-cnoremap <F7> <Up>
-cnoremap <F8> <Right>
-cnoremap <F9> <C-Left>
-cnoremap <F10> <C-Right>
-cnoremap <F11> <Home>
-cnoremap <F12> <End>
+cnoremap <Esc>d <Left>
+cnoremap <Esc>h <Down>
+cnoremap <Esc>t <Up>
+cnoremap <Esc>n <Right>
+cnoremap <Esc>b <C-Left>
+cnoremap <Esc>w <C-Right>
+cnoremap <Esc>^ <Home>
+cnoremap <Esc>$ <End>
 
-" Ctrl-Backspace
-imap <Esc>[33~ <C-W>
-cmap <Esc>[33~ <C-W>
+" Ctrl-Backspace and Alt-Backspace
+inoremap <Esc><Backspace> <C-W>
+cnoremap <Esc><Backspace> <C-W>
+inoremap <C-H> <C-W>
+cnoremap <C-H> <C-W>
 
 " https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
 let CursorColumnI = 0
