@@ -19,6 +19,7 @@ inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
 
 Bundle 'gmarik/vundle'
 
+Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
@@ -62,8 +63,8 @@ set ruler
 set showmatch
 set matchtime=0
 set matchpairs+=<:>
-set list listchars=tab:\ \ ,trail:.
 
+set list listchars=tab:»·,trail:.
 if has("wildmenu")
     set wildignore+=*.a,*.o,*.d,*.out,*.beam
     set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
@@ -108,6 +109,10 @@ let g:NERDTreeMapHelp = '<Nop>'
 " noremap  <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
 " inoremap <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
 let g:NERDSpaceDelims=1
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --smart-case'
+endif
 
 " Navigation in insert mode, depends on urxvt hacks (also in inputrc)
 " Alt-{dhtn, bw}: as usual
