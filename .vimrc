@@ -9,27 +9,18 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-source ~/.ideavimrc
-noremap <C-L> :cn<CR>
-map <silent> <F2> :NERDTreeToggle<CR>
-map <silent> <C-N> :NERDTreeToggle<CR>
-
-noremap  <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
-inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
-
 Bundle 'gmarik/vundle'
 
-Bundle 'mileszs/ack.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdtree'
-
-Bundle 'junegunn/seoul256.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tikhomirov/vim-glsl'
 Bundle 'junegunn/fzf'
 Bundle 'junegunn/fzf.vim'
+Bundle 'junegunn/seoul256.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tikhomirov/vim-glsl'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-fugitive'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
@@ -38,6 +29,14 @@ endif
 
 syntax on
 filetype plugin indent on
+
+source ~/.ideavimrc
+noremap <C-L> :cn<CR>
+map <silent> <F2> :NERDTreeToggle<CR>
+map <silent> <C-N> :NERDTreeToggle<CR>
+
+noremap  <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
+inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
 
 set encoding=utf-8
 set laststatus=2
