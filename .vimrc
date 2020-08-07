@@ -95,7 +95,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-set timeoutlen=20
+set ttimeoutlen=20
 set so=16
 au BufRead,BufNewFile *.rb set expandtab
 au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
@@ -142,6 +142,18 @@ inoremap <Esc><Backspace> <C-W>
 cnoremap <Esc><Backspace> <C-W>
 inoremap <C-H> <C-W>
 cnoremap <C-H> <C-W>
+
+" Git
+noremap gs :Gstatus<CR>
+noremap gd :Gdiff<CR>
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it for commit messages, when the position is invalid, or when
+" inside an event handler (happens when dropping a file on gvim).
+autocmd BufReadPost *
+  \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
 
 " https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
 let CursorColumnI = 0
