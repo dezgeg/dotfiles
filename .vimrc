@@ -22,13 +22,14 @@ Bundle 'gmarik/vundle'
 Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
 
 Bundle 'junegunn/seoul256.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tikhomirov/vim-glsl'
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
