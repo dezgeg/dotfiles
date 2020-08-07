@@ -142,8 +142,10 @@ noremap gd :Gdiff<CR>
 " NERDCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
-noremap  <silent> <C-_> :call NERDComment('ci', 'Invert')<CR>
-inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'Invert')<CR>
+let g:NERDToggleCheckAllLines = 1
+let g:NERDAltDelims_c = 1
+noremap  <silent> <C-_> :call NERDComment('ci', 'toggle')<CR>
+inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'toggle')<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
