@@ -35,9 +35,6 @@ noremap <C-L> :cn<CR>
 map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
 
-noremap  <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
-inoremap <silent> <C-u> :call NERDComment('ci', 'Invert')<CR>
-
 set encoding=utf-8
 set laststatus=2
 
@@ -94,7 +91,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
-set ttimeoutlen=20
+set timeoutlen=100
 set so=16
 au BufRead,BufNewFile *.rb set expandtab
 au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
@@ -105,10 +102,6 @@ let g:NERDTreeMapOpenInTab = '<Nop>'
 let g:NERDTreeMapOpenInTabSilent = '<Nop>'
 let g:NERDTreeMapOpenVSplit = '<Nop>'
 let g:NERDTreeMapHelp = '<Nop>'
-
-" noremap  <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
-" inoremap <silent> <C-i> :call NERDComment('cc', 'Comment')<CR>
-let g:NERDSpaceDelims=1
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
@@ -145,6 +138,12 @@ cnoremap <C-H> <C-W>
 " Git
 noremap gs :Gstatus<CR>
 noremap gd :Gdiff<CR>
+
+" NERDCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCommentEmptyLines = 1
+noremap  <silent> <C-_> :call NERDComment('ci', 'Invert')<CR>
+inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'Invert')<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
