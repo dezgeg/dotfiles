@@ -28,8 +28,13 @@ if exists("s:bootstrap") && s:bootstrap
     BundleInstall
 endif
 
+" Colorscheme
+set t_Co=256
+set background=dark
+let g:seoul256_background=233
+colorscheme seoul256
+
 source ~/.ideavimrc
-noremap <C-L> :cn<CR>
 map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
 
@@ -70,11 +75,6 @@ if has('mouse')
 endif
 
 set guifont=Monospace\ 7
-
-set t_Co=256
-set background=dark
-let g:seoul256_background=233
-colorscheme seoul256
 
 " Trailing whitespace - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
