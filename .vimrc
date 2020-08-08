@@ -10,6 +10,9 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+if !has('nvim')
+  Bundle 'noahfrederick/vim-neovim-defaults'
+endif
 
 Bundle 'junegunn/fzf'
 Bundle 'junegunn/fzf.vim'
@@ -21,7 +24,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sensible'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
@@ -54,6 +56,7 @@ set shiftround
 set title
 "set numberwidth=2  " necessary?
 "set shortmess=atI  " ???
+set ruler
 set showmatch
 set matchtime=0
 set matchpairs+=<:>
