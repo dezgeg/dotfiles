@@ -21,22 +21,17 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-sensible'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
     BundleInstall
 endif
 
-syntax on
-filetype plugin indent on
-
 source ~/.ideavimrc
 noremap <C-L> :cn<CR>
 map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
-
-set encoding=utf-8
-set laststatus=2
 
 set virtualedit=onemore
 set tabstop=8
@@ -44,19 +39,16 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-"set smarttab
-set autoindent copyindent
+set copyindent
 set smartindent         " let's try
 set shiftround
 
 "set nobackup nowritebackup noswapfile  " defaults
-set autoread            " let's try
 "set hidden             " maybe later
 
 set title
 "set numberwidth=2  " necessary?
 "set shortmess=atI  " ???
-set ruler
 set showmatch
 set matchtime=0
 set matchpairs+=<:>
@@ -69,11 +61,9 @@ if has("wildmenu")
     set wildignore+=*~,*.swp,*.tmp
     set wildignore+=*.pyc
     set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
-    set wildmenu
     set wildmode=longest,list
 endif
 
-set backspace=indent,eol,start
 set showcmd
 if has('mouse')
     set mouse=a
