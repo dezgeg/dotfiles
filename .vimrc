@@ -40,7 +40,7 @@ source ~/.ideavimrc
 map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
 
- " Tabs/spaces configuration
+" Tabs/spaces configuration
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
@@ -55,7 +55,7 @@ set shiftround " Round indentation when using the << or >> commands
 "set hidden             " maybe later
 
 set title " Set terminal window title
-set shortmess=atI " Do not show intro and shorten some messages
+set shortmess+=atI " Do not show intro and shorten some messages
 set ruler " Show line/column number (not really necessary with powerline though)
 set matchpairs+=<:> " Allow using % on C++ template params
 
