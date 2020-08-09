@@ -40,37 +40,36 @@ source ~/.ideavimrc
 map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
 
-set virtualedit=onemore
+ " Tabs/spaces configuration
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-set copyindent
-set smartindent         " let's try
-set shiftround
+set virtualedit=onemore " Allow moving to last column
+set copyindent " Autoindent?
+set smartindent " Language-specific smart indentation
+set shiftround " Round indentation when using the << or >> commands
 
 "set nobackup nowritebackup noswapfile  " defaults
 "set hidden             " maybe later
 
-set title
-"set numberwidth=2  " necessary?
-"set shortmess=atI  " ???
-set ruler
+set title " Set terminal window title
+set shortmess=atI " Do not show intro and shorten some messages
+set ruler " Show line/column number (not really necessary with powerline though)
+set matchpairs+=<:> " Allow using % on C++ template params
+
+" Do these have effect if matchtime is 0?
 set showmatch
 set matchtime=0
-set matchpairs+=<:>
 
 set list listchars=tab:»·,trail:.
-if has("wildmenu")
-    set wildignore+=*.a,*.o,*.d,*.out,*.beam
-    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-    set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
-    set wildignore+=*~,*.swp,*.tmp
-    set wildignore+=*.pyc
-    set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
-    set wildmode=longest,list
-endif
+set wildignore+=*.a,*.o,*.d,*.out,*.beam,*.pyc
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
+set wildignore+=*~,*.swp,*.tmp
+set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
+set wildmode=longest,list
 
 set showcmd
 if has('mouse')
@@ -90,11 +89,6 @@ au BufRead,BufNewFile *.rb set expandtab
 au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
 set updatetime=200
 " set clipboard=unnamed,autoselect
-
-let g:NERDTreeMapOpenInTab = '<Nop>'
-let g:NERDTreeMapOpenInTabSilent = '<Nop>'
-let g:NERDTreeMapOpenVSplit = '<Nop>'
-let g:NERDTreeMapHelp = '<Nop>'
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
