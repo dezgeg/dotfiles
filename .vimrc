@@ -127,6 +127,17 @@ cnoremap <C-H> <C-W>
 noremap gs :Gstatus<CR>
 noremap gd :Gdiff<CR>
 
+" fzf
+noremap <C-E> :Files<CR>
+noremap <C-G> :Ag<CR>
+
+" Terminal
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    " Enter insert mode in terminals by default
+    autocmd TermOpen * startinsert
+endif
+
 " NERDCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
@@ -140,8 +151,6 @@ let g:NERDTreeMapOpenInTab = '<Nop>'
 let g:NERDTreeMapOpenInTabSilent = '<Nop>'
 let g:NERDTreeMapOpenVSplit = '<Nop>'
 let g:NERDTreeMapHelp = '<Nop>'
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when

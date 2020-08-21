@@ -18,10 +18,16 @@ noremap j d
 noremap l n
 noremap L N
 
+nnoremap ; :
+nnoremap <Tab> %
+vnoremap <Tab> %
+
 " Do not put stuff to clipboard with x
 noremap x "_x
 
+" Waiting for use
 noremap Q <Nop>
+nnoremap <nowait> Z <nop>
 
 noremap <C-S> :wa<CR>
 noremap <C-Q> :q<CR>

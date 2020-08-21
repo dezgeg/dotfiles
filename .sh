@@ -5,7 +5,9 @@ stty -ixon -ixoff
 
 export EDITOR=vim
 export VISUAL=$EDITOR
+
 export LESS=-FRSX
+export FZF_DEFAULT_OPTS='--bind=alt-h:down,alt-t:up'
 
 # Aliases for setting sane defaults to commands
 alias reset='\reset; stty -ixon -ixoff'
