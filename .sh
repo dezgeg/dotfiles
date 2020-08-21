@@ -1,30 +1,32 @@
-alias tree='tree -C'
-alias ls='ls -F --color=auto'
+# Global setup
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH:/sbin:/usr/sbin"
+umask 0022
+stty -ixon -ixoff
 
-alias ps='ps u'
-alias psu='ps ux'
-alias psa='ps aux'
-alias psgrep='pgrep -f'
+export EDITOR=vim
+export VISUAL=$EDITOR
+export LESS=-FRSX
+
+# Aliases for setting sane defaults to commands
+alias reset='\reset; stty -ixon -ixoff'
 
 alias grep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias hd='hexdump -C'
-
-if [ "$(uname)" = 'Linux' ]; then
-    alias make="make -j$(( $(nproc) + 1))"
-fi
-alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
-
-alias gdb='gdb -quiet'
+alias ls='ls -F --color=auto'
 alias tree='tree -C'
 
+# cd aliases (do I actually use them)?
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
 
+# Git aliases
 alias gap='git add -p'
 alias gcp='git commit -v'
 alias gc!='git commit --amend -v'
@@ -36,22 +38,19 @@ alias gsh='git show HEAD'
 alias gsh^='git show HEAD^'
 alias gsh^^='git show HEAD^^'
 
-stty -ixon -ixoff
-alias reset='\reset; stty -ixon -ixoff'
+# Other random aliases
+alias hd='hexdump -C'
+alias make="make -j$(( $(nproc) + 1))"
+alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
+
+# Vim
+alias nt="nvim-qt +terminal"
 
 xrun() {
     # &! == put to background & disown (in Zsh only???)
     $1 >/dev/null 2>/dev/null </dev/null &!
 }
 
-export EDITOR=vim
-export VISUAL=$EDITOR
-
-export LESS=-FRSX
-
+# Shell init scripts for other programs
 if [ -e $HOME/.cargo/env ]; then source $HOME/.cargo/env; fi
-if [ -e /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH="$PATH:/sbin:/usr/sbin"
-umask 0022
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then source $HOME/.nix-profile/etc/profile.d/nix.sh; fi
