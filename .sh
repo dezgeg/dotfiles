@@ -1,103 +1,57 @@
-function normalize_command_line () {
-    # Declaring a function resolves all aliases in the body.
-    eval "function _f() {
-        $1
-    }"
-    declare -f _f | head -n 2 | tail -n 1
-    unset -f _f
-}
-
-function lessalias() {
-    # Use this instead of 'alias ll="ls | less"', so 'll foo*' works as well.
-    alias $1="lesswrap $(normalize_command_line $2)"
-}
-
 alias tree='tree -C'
-if [ "$(uname)" = 'Linux' ]; then
-    alias ls='ls -F --color=auto'
-fi
-alias la='ls -lah'
-alias latr='ls -latr'
-
-alias l=la
-lessalias ll 'la --color'
+alias ls='ls -F --color=auto'
 
 alias ps='ps u'
 alias psu='ps ux'
 alias psa='ps aux'
 alias psgrep='pgrep -f'
 
-lessalias psul psu
-lessalias psal psa
-
 alias grep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias halt='poweroff'
 alias hd='hexdump -C'
 
 if [ "$(uname)" = 'Linux' ]; then
-    alias make="make -j$((`cat /proc/cpuinfo | egrep '^processor' -c` + 1))"
+    alias make="make -j$(( $(nproc) + 1))"
 fi
 alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
 
 alias gdb='gdb -quiet'
 alias tree='tree -C'
-lessalias treel 'tree -C'
-lessalias makel 'make -j1'
 
-alias cdr='d=$(git rev-parse --show-toplevel) && cd "$d"'
+alias cdr='cd "$(git rev-parse --show-toplevel)"'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-if which hub >/dev/null 2>/dev/null; then
-    alias git=hub
-fi
 alias gap='git add -p'
+alias gcp='git commit -v'
+alias gc!='git commit --amend -v'
 alias gcp='git checkout -p'
 alias gl='git log'
-alias gpl='git pull'
-alias gpr='git pull --rebase'
 alias gri='git rebase -i'
 alias gs='git status'
 alias gsh='git show HEAD'
-unalias gsd 2>/dev/null
+alias gsh^='git show HEAD^'
+alias gsh^^='git show HEAD^^'
 
 stty -ixon -ixoff
 alias reset='\reset; stty -ixon -ixoff'
-
-setproc() {
-    echo $2 | sudo tee $1 >/dev/null
-}
-
-reload() {
-    exec "${SHELL}" "$@"
-}
 
 xrun() {
     # &! == put to background & disown (in Zsh only???)
     $1 >/dev/null 2>/dev/null </dev/null &!
 }
 
-alias clion='xrun ~/opt/clion-1.0/bin/clion.sh'
-alias idea='xrun ~/opt/ideaIU-14.1.4/bin/idea.sh'
-alias pycharm='xrun ~/opt/pycharm-4.0/bin/pycharm.sh'
-alias rubymine='xrun ~/opt/RubyMine-7.1.4/bin/rubymine.sh'
-
 export EDITOR=vim
 export VISUAL=$EDITOR
 
 export LESS=-FRSX
-export NNTPSERVER=news.gmane.org
-export QT_STYLE_OVERRIDE=plastique
-export JAVA_HOME=/usr/lib/jvm/java-8-jdk
-export NIXTEST_EXTRA_ARGS='--iteration 1'
 
 if [ -e $HOME/.cargo/env ]; then source $HOME/.cargo/env; fi
 if [ -e /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tmtynkky/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="$PATH:/sbin:/usr/sbin"
-
 umask 0022
