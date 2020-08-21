@@ -40,24 +40,26 @@ source ~/.ideavimrc
 map <silent> <F2> :NERDTreeToggle<CR>
 map <silent> <C-N> :NERDTreeToggle<CR>
 
+" Various global options
+set title " Set terminal window title
+set shortmess+=atI " Do not show intro and shorten some messages
+set ruler " Show line/column number (not really necessary with powerline though)
+set matchpairs+=<:> " Allow using % on C++ template params
+set guifont=Monospace\ 7
+"set nobackup nowritebackup noswapfile  " defaults
+"set hidden             " maybe later
+
 " Tabs/spaces configuration
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+" Various editing options
 set virtualedit=onemore " Allow moving to last column
 set copyindent " Autoindent?
 set smartindent " Language-specific smart indentation
 set shiftround " Round indentation when using the << or >> commands
-
-"set nobackup nowritebackup noswapfile  " defaults
-"set hidden             " maybe later
-
-set title " Set terminal window title
-set shortmess+=atI " Do not show intro and shorten some messages
-set ruler " Show line/column number (not really necessary with powerline though)
-set matchpairs+=<:> " Allow using % on C++ template params
 
 " Do these have effect if matchtime is 0?
 set showmatch
@@ -76,7 +78,6 @@ if has('mouse')
     set mouse=a
 endif
 
-set guifont=Monospace\ 7
 
 " Trailing whitespace - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -133,6 +134,14 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDAltDelims_c = 1
 noremap  <silent> <C-_> :call NERDComment('ci', 'toggle')<CR>
 inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'toggle')<CR>
+
+" NERDTree
+let g:NERDTreeMapOpenInTab = '<Nop>'
+let g:NERDTreeMapOpenInTabSilent = '<Nop>'
+let g:NERDTreeMapOpenVSplit = '<Nop>'
+let g:NERDTreeMapHelp = '<Nop>'
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
