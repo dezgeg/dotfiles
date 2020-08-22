@@ -45,7 +45,6 @@ set title " Set terminal window title
 set shortmess+=atI " Do not show intro and shorten some messages
 set ruler " Show line/column number (not really necessary with powerline though)
 set matchpairs+=<:> " Allow using % on C++ template params
-set guifont=Monospace\ 7
 "set nobackup nowritebackup noswapfile  " defaults
 "set hidden             " maybe later
 
