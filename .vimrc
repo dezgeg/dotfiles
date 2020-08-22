@@ -17,7 +17,7 @@ endif
 Bundle 'junegunn/fzf'
 Bundle 'junegunn/fzf.vim'
 Bundle 'junegunn/seoul256.vim'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-airline/vim-airline'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
@@ -37,8 +37,6 @@ let g:seoul256_background=233
 colorscheme seoul256
 
 source ~/.ideavimrc
-map <silent> <F2> :NERDTreeToggle<CR>
-map <silent> <C-N> :NERDTreeToggle<CR>
 
 " Various global options
 set title " Set terminal window title

@@ -10,8 +10,12 @@ noremap n l
 noremap H 8<Down>
 nnoremap T 8<Up>
 vnoremap T 8<Up>
-noremap D <Nop>
+
+noremap D <C-w><C-W>
 noremap N <C-w><C-w>
+
+noremap <C-d> gT
+noremap <C-n> gt
 
 " Remap useful keys lost by Dvorak binds
 noremap j d
