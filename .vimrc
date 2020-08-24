@@ -1,29 +1,30 @@
 " Vundle
-if !isdirectory(expand("~/.vim/bundle/vundle"))
+if !isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     !mkdir -p ~/.vim/bundle
-    !git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    !git clone git://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     let s:bootstrap=1
 endif
 set nocompatible               " be iMproved
 filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
 
-Bundle 'gmarik/vundle'
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 if !has('nvim')
-  Bundle 'noahfrederick/vim-neovim-defaults'
+  Plugin 'noahfrederick/vim-neovim-defaults'
 endif
-
-Bundle 'junegunn/fzf'
-Bundle 'junegunn/fzf.vim'
-Bundle 'junegunn/seoul256.vim'
-Bundle 'vim-airline/vim-airline'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tikhomirov/vim-glsl'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-fugitive'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-fugitive'
+call vundle#end()
+filetype plugin indent on
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
