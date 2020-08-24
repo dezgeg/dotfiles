@@ -147,6 +147,9 @@ noremap gd :Gdiff<CR>
 noremap <C-E> :Files<CR>
 noremap <C-G> :Ag<CR>
 
+" https://ddrscott.github.io/blog/2016/yank-without-jank/
+vnoremap <expr>y "my\"" . v:register . "y`y"
+
 " Terminal
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
