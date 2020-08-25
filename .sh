@@ -8,6 +8,7 @@ export VISUAL=$EDITOR
 
 export LESS=-FRSX
 export FZF_DEFAULT_OPTS='--bind=alt-h:down,alt-t:up'
+export FZF_DEFAULT_COMMAND='find .'
 
 # Aliases for setting sane defaults to commands
 alias reset='\reset; stty -ixon -ixoff'
