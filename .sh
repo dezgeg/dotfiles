@@ -3,7 +3,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH:/sbin:/usr/sbin"
 umask 0022
 stty -ixon -ixoff
 
-export EDITOR=vim
+export EDITOR=v
 export VISUAL=$EDITOR
 
 export LESS=-FRSX
@@ -44,9 +44,10 @@ alias gsh^^='git show HEAD^^'
 # Other random aliases
 alias hd='hexdump -C'
 alias make="make -j$(( $(nproc) + 1))"
-alias maker='d=$(git rev-parse --show-toplevel) && make -C "$d"'
+alias maker='make -C "$(git rev-parse --show-toplevel)"'
 
 # Vim
+alias vim=v
 alias nt="nvim-qt +terminal"
 
 xrun() {
