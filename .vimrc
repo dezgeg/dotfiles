@@ -193,10 +193,19 @@ endfunction
 nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
 
 " Terminal
+function UpdateTerminalWorkingDirectory()
+    " Extract PID from buffer name
+    let l:matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
+    let l:cwd = resolve('/proc/' . l:matches[1] . '/cwd')
+    execute 'cd ' . fnameescape(l:cwd)
+endfunction
+
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
     " Enter insert mode in terminals by default
     autocmd TermOpen * startinsert
+    " Sync working directory every time insert mode is left
+    autocmd TermLeave * call UpdateTerminalWorkingDirectory()
 endif
 
 " NERDCommenter
