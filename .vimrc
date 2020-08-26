@@ -175,6 +175,23 @@ function SmartWindowClose()
 endfunction
 nnoremap <silent> <C-Q> :call SmartWindowClose()<CR>
 
+" Smart terminal goto
+function SmartTerminalGoto()
+    if &buftype != "terminal"
+        return
+    endif
+
+    let l:line = getline(".")
+    let l:pattern = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
+    let l:matches = matchlist(l:line, l:pattern)
+    if len(l:matches) > 0
+        let l:file = l:matches[1]
+        let w:terminal_buffer = bufnr('%')
+        execute "edit " . l:file
+    endif
+endfunction
+nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
+
 " Terminal
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
