@@ -115,24 +115,24 @@ endif
 " Navigation in insert mode
 " Alt-{dhtn, bw}: as usual
 " Alt-{0^}: ^ and $
-inoremap <Esc>d <Left>
-inoremap <Esc>h <Down>
-inoremap <Esc>t <Up>
-inoremap <Esc>n <Right>
-inoremap <Esc>b <C-Left>
-inoremap <Esc>w <C-Right>
-inoremap <Esc>^ <Home>
-inoremap <Esc>$ <End>
+inoremap <A-d> <Left>
+inoremap <A-h> <Down>
+inoremap <A-t> <Up>
+inoremap <A-n> <Right>
+inoremap <A-b> <C-Left>
+inoremap <A-w> <C-Right>
+inoremap <A-^> <Home>
+inoremap <A-$> <End>
 
 " And command-line mode as well.
-cnoremap <Esc>d <Left>
-cnoremap <Esc>h <Down>
-cnoremap <Esc>t <Up>
-cnoremap <Esc>n <Right>
-cnoremap <Esc>b <C-Left>
-cnoremap <Esc>w <C-Right>
-cnoremap <Esc>^ <Home>
-cnoremap <Esc>$ <End>
+cnoremap <A-d> <Left>
+cnoremap <A-h> <Down>
+cnoremap <A-t> <Up>
+cnoremap <A-n> <Right>
+cnoremap <A-b> <C-Left>
+cnoremap <A-w> <C-Right>
+cnoremap <A-^> <Home>
+cnoremap <A-$> <End>
 
 " Ctrl-Backspace and Alt-Backspace
 inoremap <Esc><Backspace> <C-W>
