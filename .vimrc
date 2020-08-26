@@ -62,6 +62,8 @@ set title " Set terminal window title
 set shortmess+=atI " Do not show intro and shorten some messages
 set ruler " Show line/column number (not really necessary with powerline though)
 set matchpairs+=<:> " Allow using % on C++ template params
+set splitbelow
+set splitright
 "set nobackup nowritebackup noswapfile  " defaults
 "set hidden             " maybe later
 
@@ -93,7 +95,6 @@ set showcmd
 if has('mouse')
     set mouse=a
 endif
-
 
 " Trailing whitespace - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
