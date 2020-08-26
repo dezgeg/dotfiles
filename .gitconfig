@@ -20,6 +20,9 @@
     ls = ls-files
     puff = pull --ff-only
     purr = pull --rebase
+[grep]
+    lineNumber = true
+    patternType = perl
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpserverport = 587

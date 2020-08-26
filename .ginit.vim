@@ -22,6 +22,10 @@ vnoremap <LeftRelease> "*ygv
 tnoremap <MiddleMouse> <C-\><C-N>"*pi
 tnoremap <MiddleRelease> <Nop>
 
+" Scrolling with PgUp/PgDn (TODO: make these not leave terminal mode)
+tnoremap <S-PageUp> <C-\><C-N><PageUp>
+tnoremap <S-PageDown> <C-\><C-N><PageDown>
+
 command! -bar -nargs=0 FontInc :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)+1','')
 command! -bar -nargs=0 FontDec :let &guifont = substitute(&guifont,'\d\+$','\=submatch(0)-1','')
 nnoremap <C--> :FontDec<CR>

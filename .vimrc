@@ -16,13 +16,14 @@ endif
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/seoul256.vim'
-Plugin 'vim-airline/vim-airline'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
 call vundle#end()
 filetype plugin indent on
 

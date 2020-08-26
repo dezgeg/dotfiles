@@ -7,17 +7,17 @@ export EDITOR=v
 export VISUAL=$EDITOR
 
 export LESS=-FRSX
-export FZF_DEFAULT_OPTS='--bind=alt-h:down,alt-t:up'
+export FZF_DEFAULT_OPTS='-e --bind=alt-h:down,alt-t:up'
 export FZF_DEFAULT_COMMAND='find .'
 
 # Aliases for setting sane defaults to commands
 alias reset='\reset; stty -ixon -ixoff'
 
-alias grep='grep -E --color=auto'
+alias grep='grep -P --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias ls='ls -F --color=auto'
+alias ls='ls -F --color=auto --time-style="+%a %Y-%m-%d %H:%M:%S"'
 alias tree='tree -C'
 
 # cd aliases (do I actually use them)?
