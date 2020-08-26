@@ -32,6 +32,7 @@ alias cd....='cd ../../..'
 # Git aliases
 alias gap='git add -p'
 alias gcp='git commit -v'
+alias gc='git commit -v'
 alias gc!='git commit --amend -v'
 alias gcp='git checkout -p'
 alias gl='git log'
