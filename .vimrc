@@ -157,9 +157,15 @@ function SmartWindowClose()
         let l:current_buffer = bufnr("%")
         setlocal bufhidden=delete
         execute "buffer " . w:terminal_buffer
+        unlet w:terminal_buffer
         startinsert
     else
-        execute "q"
+        let l:num_windows = winnr("$")
+        if exists('g:GuiLoaded') && l:num_windows == 1
+            echo "Not closing last window!"
+        else
+            q
+        end
     endif
 endfunction
 nnoremap <silent> <C-Q> :call SmartWindowClose()<CR>
