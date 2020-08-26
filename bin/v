@@ -2,5 +2,5 @@
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     exec nvr -cc "let w:terminal_buffer = bufnr('%')" --remote-wait-silent "$@"
 else
-    exec vim "$@"
+    exec nvim "$@"
 fi

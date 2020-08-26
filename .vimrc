@@ -157,7 +157,7 @@ function SmartWindowClose()
         let l:current_buffer = bufnr("%")
         setlocal bufhidden=delete
         execute "buffer " . w:terminal_buffer
-        normal "a"
+        startinsert
     else
         execute "q"
     endif
