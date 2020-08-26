@@ -55,6 +55,11 @@ if has('nvim')
     let g:terminal_color_15 = '#e4e4e4'
 endif
 
+" Appearance
+set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
+set guicursor+=i-ci-ve:ver25-blinkon1000-blinkoff100-blinkwait1000
+set guicursor+=r-cr-o:hor20-blinkon1000-blinkoff100-blinkwait1000
+
 source ~/.ideavimrc
 
 " Various global options
