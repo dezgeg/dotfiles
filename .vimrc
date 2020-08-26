@@ -160,8 +160,7 @@ function SmartWindowClose()
         unlet w:terminal_buffer
         startinsert
     else
-        let l:num_windows = winnr("$")
-        if exists('g:GuiLoaded') && l:num_windows == 1
+        if exists('g:GuiLoaded') && winnr("$") == 1 && tabpagenr("$") == 1
             echo "Not closing last window!"
         else
             q
