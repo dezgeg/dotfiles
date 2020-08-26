@@ -50,6 +50,17 @@ alias maker='make -C "$(git rev-parse --show-toplevel)"'
 # Vim
 alias vim=v
 alias nt="nvim-qt +terminal"
+vg() {
+    local files=$(git grep -El "$@")
+    if [ $? != 0 ]; then
+        return
+    fi
+    if [ "$files" != "" ]; then
+        vim $files
+    else
+        echo "No files!"
+    fi
+}
 
 xrun() {
     # &! == put to background & disown (in Zsh only???)
