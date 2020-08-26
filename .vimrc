@@ -151,6 +151,19 @@ noremap <C-G> :Ag<CR>
 " https://ddrscott.github.io/blog/2016/yank-without-jank/
 vnoremap <expr>y "my\"" . v:register . "y`y"
 
+" Smart window closing
+function SmartWindowClose()
+    if exists('w:terminal_buffer')
+        let l:current_buffer = bufnr("%")
+        setlocal bufhidden=delete
+        execute "buffer " . w:terminal_buffer
+        normal "a"
+    else
+        execute "q"
+    endif
+endfunction
+nnoremap <silent> <C-Q> :call SmartWindowClose()<CR>
+
 " Terminal
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>

@@ -34,7 +34,6 @@ noremap Q <Nop>
 nnoremap <nowait> Z <nop>
 
 noremap <C-S> :wa<CR>
-noremap <C-Q> :q<CR>
 
 set showmode
 set incsearch hlsearch
