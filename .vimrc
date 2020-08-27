@@ -196,8 +196,12 @@ nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
 function UpdateTerminalWorkingDirectory()
     " Extract PID from buffer name
     let l:matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
-    let l:cwd = resolve('/proc/' . l:matches[1] . '/cwd')
-    execute 'cd ' . fnameescape(l:cwd)
+    if len(l:matches) > 0
+        let l:cwd = resolve('/proc/' . l:matches[1] . '/cwd')
+        if isdirectory(l:cwd)
+            execute 'cd ' . fnameescape(l:cwd)
+        endif
+    endif
 endfunction
 
 if has('nvim')
