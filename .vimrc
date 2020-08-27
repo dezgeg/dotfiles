@@ -13,12 +13,14 @@ Plugin 'VundleVim/Vundle.vim'
 if !has('nvim')
   Plugin 'noahfrederick/vim-neovim-defaults'
 endif
+Plugin 'brooth/far.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/seoul256.vim'
+Plugin 'mbbill/undotree'
+Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
@@ -219,12 +221,6 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDAltDelims_c = 1
 noremap  <silent> <C-_> :call NERDComment('ci', 'toggle')<CR>
 inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'toggle')<CR>
-
-" NERDTree
-let g:NERDTreeMapOpenInTab = '<Nop>'
-let g:NERDTreeMapOpenInTabSilent = '<Nop>'
-let g:NERDTreeMapOpenVSplit = '<Nop>'
-let g:NERDTreeMapHelp = '<Nop>'
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
