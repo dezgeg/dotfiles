@@ -4,8 +4,7 @@ if !isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     !git clone git://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     let s:bootstrap=1
 endif
-set nocompatible               " be iMproved
-filetype off                   " required!
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 
 call vundle#begin()
@@ -21,6 +20,7 @@ Plugin 'mbbill/undotree'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'svermeulen/vim-yoink'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
@@ -68,12 +68,10 @@ source ~/.ideavimrc
 " Various global options
 set title " Set terminal window title
 set shortmess+=atI " Do not show intro and shorten some messages
-set ruler " Show line/column number (not really necessary with powerline though)
 set matchpairs+=<:> " Allow using % on C++ template params
 set splitbelow
 set splitright
-"set nobackup nowritebackup noswapfile  " defaults
-"set hidden             " maybe later
+set scrolloff=16
 
 " Tabs/spaces configuration
 set tabstop=8
@@ -84,12 +82,8 @@ set expandtab
 " Various editing options
 set virtualedit=onemore " Allow moving to last column
 set copyindent " Autoindent?
-set smartindent " Language-specific smart indentation
+set autoindent " Language-specific smart indentation
 set shiftround " Round indentation when using the << or >> commands
-
-" Do these have effect if matchtime is 0?
-set showmatch
-set matchtime=0
 
 set list listchars=tab:»·,trail:.
 set wildignore+=*.a,*.o,*.d,*.out,*.beam,*.pyc
@@ -110,7 +104,6 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
 set timeoutlen=100
-set so=16
 au BufRead,BufNewFile *.rb set expandtab
 au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
 set updatetime=200
@@ -177,41 +170,40 @@ function SmartWindowClose()
 endfunction
 nnoremap <silent> <C-Q> :call SmartWindowClose()<CR>
 
-" Smart terminal goto
-function SmartTerminalGoto()
-    if &buftype != "terminal"
-        return
-    endif
-
-    let l:line = getline(".")
-    let l:pattern = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
-    let l:matches = matchlist(l:line, l:pattern)
-    if len(l:matches) > 0
-        let l:file = l:matches[1]
-        let w:terminal_buffer = bufnr('%')
-        execute "edit " . l:file
-    endif
-endfunction
-nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
-
 " Terminal
-function UpdateTerminalWorkingDirectory()
-    " Extract PID from buffer name
-    let l:matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
-    if len(l:matches) > 0
-        let l:cwd = resolve('/proc/' . l:matches[1] . '/cwd')
-        if isdirectory(l:cwd)
-            execute 'cd ' . fnameescape(l:cwd)
-        endif
-    endif
-endfunction
-
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
     " Enter insert mode in terminals by default
     autocmd TermOpen * startinsert
     " Sync working directory every time insert mode is left
+    function UpdateTerminalWorkingDirectory()
+        " Extract PID from buffer name
+        let l:matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
+        if len(l:matches) > 0
+            let l:cwd = resolve('/proc/' . l:matches[1] . '/cwd')
+            if isdirectory(l:cwd)
+                execute 'cd ' . fnameescape(l:cwd)
+            endif
+        endif
+    endfunction
     autocmd TermLeave * call UpdateTerminalWorkingDirectory()
+
+    " Smart terminal goto
+    function SmartTerminalGoto()
+        if &buftype != "terminal"
+            return
+        endif
+
+        let l:line = getline(".")
+        let l:pattern = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
+        let l:matches = matchlist(l:line, l:pattern)
+        if len(l:matches) > 0
+            let l:file = l:matches[1]
+            let w:terminal_buffer = bufnr('%')
+            execute "edit " . l:file
+        endif
+    endfunction
+    nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
 endif
 
 " NERDCommenter
