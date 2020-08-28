@@ -158,7 +158,7 @@ vnoremap <expr>y "my\"" . v:register . "y`y"
 " Smart window closing
 function SmartWindowClose()
     if exists('w:terminal_buffer')
-        let l:current_buffer = bufnr("%")
+        let current_buffer = bufnr("%")
         setlocal bufhidden=delete
         execute "buffer " . w:terminal_buffer
         unlet w:terminal_buffer
@@ -181,11 +181,11 @@ if has('nvim')
     " Sync working directory every time insert mode is left
     function UpdateTerminalWorkingDirectory()
         " Extract PID from buffer name
-        let l:matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
-        if len(l:matches) > 0
-            let l:cwd = resolve('/proc/' . l:matches[1] . '/cwd')
-            if isdirectory(l:cwd)
-                execute 'cd ' . fnameescape(l:cwd)
+        let matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
+        if len(matches) > 0
+            let cwd = resolve('/proc/' . matches[1] . '/cwd')
+            if isdirectory(cwd)
+                execute 'cd ' . fnameescape(cwd)
             endif
         endif
     endfunction
@@ -197,13 +197,13 @@ if has('nvim')
             return
         endif
 
-        let l:line = getline(".")
-        let l:pattern = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
-        let l:matches = matchlist(l:line, l:pattern)
-        if len(l:matches) > 0
-            let l:file = l:matches[1]
+        let line = getline(".")
+        let pattern = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
+        let matches = matchlist(line, pattern)
+        if len(matches) > 0
+            let file = matches[1]
             let w:terminal_buffer = bufnr('%')
-            execute "edit " . l:file
+            execute "edit " . file
         endif
     endfunction
     nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
