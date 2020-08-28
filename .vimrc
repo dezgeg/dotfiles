@@ -148,6 +148,9 @@ noremap gd :Gdiff<CR>
 " fzf
 noremap <C-E> :Files<CR>
 noremap <C-G> :Ag<CR>
+" Make ESC cancel (override global Esc map)
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " https://ddrscott.github.io/blog/2016/yank-without-jank/
 vnoremap <expr>y "my\"" . v:register . "y`y"
