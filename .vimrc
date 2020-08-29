@@ -157,7 +157,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 vnoremap <expr>y "my\"" . v:register . "y`y"
 
 " Smart window closing
-function SmartWindowClose()
+function s:SmartWindowClose()
     if exists('w:terminal_buffer')
         let current_buffer = bufnr("%")
         setlocal bufhidden=delete
@@ -172,7 +172,7 @@ function SmartWindowClose()
         end
     endif
 endfunction
-nnoremap <silent> <C-Q> :call SmartWindowClose()<CR>
+nnoremap <silent> <C-Q> :call <SID>SmartWindowClose()<CR>
 
 " Terminal
 if has('nvim')
@@ -180,7 +180,7 @@ if has('nvim')
     " Enter insert mode in terminals by default
     autocmd TermOpen * startinsert
     " Sync working directory every time insert mode is left
-    function UpdateTerminalWorkingDirectory()
+    function s:UpdateTerminalWorkingDirectory()
         " Extract PID from buffer name
         let matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
         if len(matches) > 0
@@ -190,10 +190,10 @@ if has('nvim')
             endif
         endif
     endfunction
-    autocmd TermLeave * call UpdateTerminalWorkingDirectory()
+    autocmd TermLeave * call <SID>UpdateTerminalWorkingDirectory()
 
     " Smart terminal goto
-    function SmartTerminalGoto()
+    function s:SmartTerminalGoto()
         if &buftype != "terminal"
             return
         endif
@@ -207,7 +207,7 @@ if has('nvim')
             execute "edit " . file
         endif
     endfunction
-    nnoremap <silent> <Return> :call SmartTerminalGoto()<CR>
+    nnoremap <silent> <Return> :call <SID>SmartTerminalGoto()<CR>
 endif
 
 " NERDCommenter
