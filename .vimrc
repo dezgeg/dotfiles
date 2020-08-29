@@ -218,6 +218,15 @@ let g:NERDAltDelims_c = 1
 noremap  <silent> <C-_> :call NERDComment('ci', 'toggle')<CR>
 inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'toggle')<CR>
 
+" Yoink
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+let g:yoinkMaxItems = 30
+let g:yoinkMoveCursorToEndOfPaste = 1
+let g:yoinkSavePersistently = 1
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
 " inside an event handler (happens when dropping a file on gvim).
