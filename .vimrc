@@ -181,10 +181,8 @@ if has('nvim')
     autocmd TermOpen * startinsert
     " Sync working directory every time insert mode is left
     function s:UpdateTerminalWorkingDirectory()
-        " Extract PID from buffer name
-        let matches = matchlist(expand('%'), '^term:\/\/.*\/\/\([0-9]\+\):')
-        if len(matches) > 0
-            let cwd = resolve('/proc/' . matches[1] . '/cwd')
+        if exists('b:terminal_job_pid')
+            let cwd = resolve('/proc/' . b:terminal_job_pid . '/cwd')
             if isdirectory(cwd)
                 execute 'cd ' . fnameescape(cwd)
             endif
