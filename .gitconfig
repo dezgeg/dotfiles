@@ -27,6 +27,21 @@
 [grep]
     lineNumber = true
     patternType = perl
+[am]
+    threeWay = true
+[merge]
+    keepBackup = false
+[commit]
+    verbose = 1
+[log]
+    follow = true
+    date = format:%a %Y-%m-%d %H:%M:%S
+[format]
+    pretty = %C(yellow)%C(bold)Commit: %H%C(auto)%d%n%C(green)%ad %an <%ae>%n%w(0,4,4)%C(bold)%s%n%n%b
+[interactive]
+    singleKey = true
+[stash]
+    showPatch = true
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpserverport = 587
