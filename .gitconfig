@@ -1,6 +1,7 @@
 [core]
     editor = v
     excludesfile = ~/.gitexcludes
+    abbrev = 12
 [user]
     name = Tuomas Tynkkynen
     email = tuomas.tynkkynen@iki.fi
@@ -10,16 +11,19 @@
     branch = auto
 [alias]
     st = status
-    ci = commit
     br = branch
     co = checkout
-    df = diff
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
+
     puff = pull --ff-only
     purr = pull --rebase
+
+    current-branch = rev-parse --abbrev-ref HEAD
+    root = rev-parse --show-toplevel
+
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lolv = log --color --graph --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [grep]
     lineNumber = true
     patternType = perl
@@ -34,6 +38,7 @@
     noprefix = true
 [rebase]
     autostash = true
+    abbreviateCommands = true
 [github]
     user = dezgeg
 [filter "lfs"]
