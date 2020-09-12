@@ -18,7 +18,8 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/gv.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'mbbill/undotree'
-Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'mhinz/vim-startify'
+" Plugin 'michaeljsmith/vim-indent-object' broken?
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'svermeulen/vim-yoink'
@@ -26,7 +27,7 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
+Plugin 'itchyny/lightline.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -40,7 +41,6 @@ set t_Co=256
 set background=dark
 let g:seoul256_background=233
 colorscheme seoul256
-" let g:airline_theme = 'seoul256'
 if has('nvim')
     let g:terminal_color_0  = '#606060'
     let g:terminal_color_1  = '#df9a98'
@@ -100,6 +100,36 @@ set showcmd
 if has('mouse')
     set mouse=a
 endif
+
+function LightlineFilenameOrTermCwd()
+    if exists('b:terminal_job_pid')
+        return fnamemodify(resolve('/proc/' . b:terminal_job_pid . '/cwd'), ':~:.')
+    else
+        return expand('%:~:.')
+    endif
+endfunction
+
+function LightlineReadonly()
+    return &readonly ? 'RO' : ''
+endfunction
+
+let g:lightline = {
+\    'colorscheme': 'seoul256',
+\    'active': {
+\       'left': [['mode', 'paste'], ['filename', 'modified', 'readonly']],
+\       'right': [['lineinfo'], ['percent'], ['gitbranch']],
+\    },
+\    'component_function': {
+\       'filename': 'LightlineFilenameOrTermCwd',
+\       'gitbranch': 'FugitiveHead',
+\    },
+\    'component_expand': {
+\       'readonly': 'LightlineReadonly',
+\    },
+\    'component_type': {
+\       'readonly': 'error',
+\    },
+\}
 
 " Trailing whitespace - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
