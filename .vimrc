@@ -235,13 +235,24 @@ if has('nvim')
         endif
 
         let line = getline(".")
-        let pattern = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
-        let matches = matchlist(line, pattern)
+
+        let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
+        let matches = matchlist(line, LS_PATTERN)
         if len(matches) > 0
             let file = matches[1]
             let w:terminal_buffer = bufnr('%')
             execute "edit " . file
+            return
         endif
+        let GREP_PATTERN = '^\([^:]\+\):\([0-9]\+\)'
+        let matches = matchlist(line, GREP_PATTERN)
+        if len(matches) > 0
+            let file = matches[1]
+            let lineno = matches[2]
+            let w:terminal_buffer = bufnr('%')
+            execute "edit +" . lineno . " " . file
+        endif
+
     endfunction
     nnoremap <silent> <Return> :call <SID>SmartTerminalGoto()<CR>
 endif
