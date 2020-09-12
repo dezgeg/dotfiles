@@ -15,6 +15,7 @@ endif
 Plugin 'brooth/far.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/gv.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'mbbill/undotree'
 Plugin 'michaeljsmith/vim-indent-object'
@@ -73,6 +74,7 @@ set matchpairs+=<:> " Allow using % on C++ template params
 set splitbelow
 set splitright
 set scrolloff=16
+set noshowmode
 
 " Tabs/spaces configuration
 set tabstop=8
@@ -142,13 +144,19 @@ cnoremap <Esc><Backspace> <C-W>
 inoremap <C-H> <C-W>
 cnoremap <C-H> <C-W>
 
+" repeat command for each line in selection
+xnoremap <silent> . :normal .<CR>
+
+" select pasted text
+noremap gp `[v`]
+
 " Git
 noremap gs :Gstatus<CR>
 noremap gd :Gdiff<CR>
 
 " fzf
 noremap <C-E> :Files<CR>
-noremap <C-G> :Ag<CR>
+noremap <C-G> :Rg<CR>
 " Make ESC cancel (override global Esc map)
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -156,7 +164,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 " https://ddrscott.github.io/blog/2016/yank-without-jank/
 vnoremap <expr>y "my\"" . v:register . "y`y"
 
-" Smart window closing
+" If closing an editor window opened from terminal, focus back that same terminal
 function s:SmartWindowClose()
     if exists('w:terminal_buffer')
         let current_buffer = bufnr("%")

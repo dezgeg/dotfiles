@@ -8,7 +8,7 @@ export VISUAL=$EDITOR
 
 export LESS=-FRSX
 export FZF_DEFAULT_OPTS='-e --bind=alt-h:down,alt-t:up'
-export FZF_DEFAULT_COMMAND='find .'
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 # Aliases for setting sane defaults to commands
 alias reset='\reset; stty -ixon -ixoff'
@@ -19,6 +19,7 @@ alias egrep='egrep --color=auto'
 
 alias ls='ls -F --color=auto --time-style="+%a %Y-%m-%d %H:%M:%S"'
 alias tree='tree -C'
+alias rg='rg -zS'
 
 # cd aliases (do I actually use them)?
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
@@ -35,6 +36,8 @@ alias gcp='git commit -v'
 alias gc='git commit -v'
 alias gc!='git commit --amend -v'
 alias gcp='git checkout -p'
+alias gd='git diff'
+alias gdc='git diff --cached'
 alias gl='git log'
 alias gri='git rebase -i'
 alias gs='git status'

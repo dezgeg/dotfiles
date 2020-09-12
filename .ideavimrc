@@ -23,6 +23,7 @@ noremap l n
 noremap L N
 
 nnoremap ; :
+vnoremap ; :
 nnoremap <Tab> %
 vnoremap <Tab> %
 
