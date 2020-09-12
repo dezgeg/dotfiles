@@ -244,6 +244,7 @@ if has('nvim')
             execute "edit " . file
             return
         endif
+
         let GREP_PATTERN = '^\([^:]\+\):\([0-9]\+\)'
         let matches = matchlist(line, GREP_PATTERN)
         if len(matches) > 0
@@ -251,6 +252,32 @@ if has('nvim')
             let lineno = matches[2]
             let w:terminal_buffer = bufnr('%')
             execute "edit +" . lineno . " " . file
+            return
+        endif
+
+        let RG_PATTERN = '^\([0-9]\+\):'
+        let matches = matchlist(line, RG_PATTERN)
+        if len(matches) > 0
+            let lineno = matches[1]
+
+            " Scan upwards (up to 100 lines) to find the filename to edit
+            let term_line = line(".") - 1
+            let stop_line = min([lineno - 100, 1])
+            while term_line >= stop_line
+                let line = getline(term_line)
+                let matches = matchlist(line, RG_PATTERN)
+                if len(matches) == 0
+                    " 'line' did not contain line number -> should be filename
+                    if filereadable(line)
+                        let w:terminal_buffer = bufnr('%')
+                        execute "edit +" . lineno . " " . line
+                    endif
+                    return
+                endif
+
+                let term_line -= 1
+            endwhile
+
         endif
 
     endfunction
