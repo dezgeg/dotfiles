@@ -96,10 +96,11 @@ _update_prompt() {
 # Capture start time of command just before it is executed (gross hacks required).
 export PS0='${HOME:$((_start_time=$SECONDS,999))}'
 
-_ps1=''
+_ps1='\[\033[1;37m\]' # bold white
+_ps1+='┊'
 if [ -n "$SSH_CONNECTION" ]; then
     _ps1+='\[\033[1;32m\]' # bold green
-    _ps1+='\u'             # username
+    _ps1+='\\u'            # username
     _ps1+='\[\033[1;37m\]' # bold white
     _ps1+='@'
     _ps1+='\[\033[1;36m\]' # bold cyan
