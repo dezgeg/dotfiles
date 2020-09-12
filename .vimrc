@@ -212,6 +212,46 @@ function s:SmartWindowClose()
 endfunction
 nnoremap <silent> <C-Q> :call <SID>SmartWindowClose()<CR>
 
+" In diff mode, go to next/previous diff hunk
+" In terminal mode, go to next/previous prompt occurrence
+function s:SmartParen(key, mode)
+    if a:mode == 'v'
+        normal! gv
+    endif
+
+    if &diff
+        if a:key == '('
+            normal! [c
+        else
+            normal! ]c
+        endif
+        return
+    endif
+
+    if &buftype != "terminal"
+        if a:key == '('
+            normal! (
+        else
+            normal! )
+        endif
+        return
+    endif
+
+    let flags = 'nW'
+    if a:key == '('
+        let flags ..= 'b'
+    endif
+    let lineno = search('^┊', flags)
+
+    if lineno != 0
+        call cursor(lineno, 1)
+    endif
+endfunction
+nnoremap <silent> ( :call <SID>SmartParen('(', 'n')<CR>
+nnoremap <silent> ) :call <SID>SmartParen(')', 'n')<CR>
+vnoremap <silent> ( :call <SID>SmartParen('(', 'v')<CR>
+vnoremap <silent> ) :call <SID>SmartParen(')', 'v')<CR>
+
 " Terminal
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
@@ -299,7 +339,9 @@ nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 let g:yoinkMaxItems = 30
 let g:yoinkMoveCursorToEndOfPaste = 1
-let g:yoinkSavePersistently = 1
+if has('nvim')
+    let g:yoinkSavePersistently = 1
+endif
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
