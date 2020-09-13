@@ -13,6 +13,7 @@ if !has('nvim')
   Plugin 'noahfrederick/vim-neovim-defaults'
 endif
 Plugin 'brooth/far.vim'
+Plugin 'godlygeek/tabular'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/gv.vim'
@@ -74,7 +75,9 @@ set matchpairs+=<:> " Allow using % on C++ template params
 set splitbelow
 set splitright
 set scrolloff=16
-set noshowmode
+set noshowmode " Unnecessary with lightline
+set nojoinspaces " Better J behaviour
+set formatoptions+=n " Do not make mess of numbered lists when using gq
 
 " Tabs/spaces configuration
 set tabstop=8
@@ -93,12 +96,14 @@ set wildignore+=*.a,*.o,*.d,*.out,*.beam,*.pyc
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.DS_Store,.git,.hg,.svn,deps,ebin
 set wildignore+=*~,*.swp,*.tmp
-set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls,*.log
+set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls
 set wildmode=longest,list
 
 set showcmd
-if has('mouse')
-    set mouse=a
+set mouse=a
+
+if has('nvim')
+    set inccommand=nosplit
 endif
 
 function LightlineFilenameOrTermCwd()
@@ -174,19 +179,53 @@ cnoremap <Esc><Backspace> <C-W>
 inoremap <C-H> <C-W>
 cnoremap <C-H> <C-W>
 
-" repeat command for each line in selection
+" Indent changes in insert mode (does not work in terminal!)
+inoremap <C-,> <C-D>
+inoremap <C-.> <C-T>
+
+" Remap autocomplete to more logical keys
+inoremap <C-h> <C-n>
+inoremap <C-t> <C-p>
+
+" Sane paste
+inoremap <C-p> <C-g>u<C-r>"
+cnoremap <C-p> <C-g>u<C-r>"
+
+" Undo
+inoremap <C-u> <C-o>u
+cnoremap <C-u> <C-o>u
+
+" Repeat command for each line in selection
 xnoremap <silent> . :normal .<CR>
 
 " select pasted text
 noremap gp `[v`]
+
+" Tabs
+nnoremap <silent> <C-=>  :tabnew<CR>
+nnoremap <C-[>  gT
+nnoremap <C-]>  gt
+
+" Jumplist navigation: Ctrl-{Left,Right), Alt-[dn]
+nnoremap <M-Left>  <C-o>
+nnoremap <M-Right> <C-i>
+vnoremap <M-Left>  <C-o>
+vnoremap <M-Right> <C-i>
+nnoremap <M-d> <C-o>
+nnoremap <M-n> <C-i>
+vnoremap <M-d> <C-o>
+vnoremap <M-n> <C-i>
 
 " Git
 noremap gs :Gstatus<CR>
 noremap gd :Gdiff<CR>
 
 " fzf
+" Use --hidden with rg
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 noremap <C-E> :Files<CR>
 noremap <C-G> :Rg<CR>
+noremap <C-F> :Buffers<CR>
 " Make ESC cancel (override global Esc map)
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -252,6 +291,21 @@ nnoremap <silent> ) :call <SID>SmartParen(')', 'n')<CR>
 vnoremap <silent> ( :call <SID>SmartParen('(', 'v')<CR>
 vnoremap <silent> ) :call <SID>SmartParen(')', 'v')<CR>
 
+" u/U in visual mode to search for the current selection (mnemoic: use)
+function! s:SearchForSelection(dir)
+    let old = @"
+    normal! gvy
+
+    let regex = '\V' .. escape(@", '/\')
+
+    let @" = old
+    let @/ = regex
+    execute 'normal! ' .. a:dir .. regex .. "\r"
+endfunction
+
+vnoremap u :call <SID>SearchForSelection('/')<CR>
+vnoremap U :call <SID>SearchForSelection('?')<CR>
+
 " Terminal
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
@@ -276,6 +330,8 @@ if has('nvim')
 
         let line = getline(".")
 
+        " Match ls -la output, e.g.
+        " -rw-r--r--   1 tmtynkky tmtynkky 10508 la 2020-09-12 20:59:07 .vimrc
         let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
         let matches = matchlist(line, LS_PATTERN)
         if len(matches) > 0
@@ -285,6 +341,8 @@ if has('nvim')
             return
         endif
 
+        " Match grep -n output, e.g.:
+        " .vimrc:272:    function s:SmartTerminalGoto()
         let GREP_PATTERN = '^\([^:]\+\):\([0-9]\+\)'
         let matches = matchlist(line, GREP_PATTERN)
         if len(matches) > 0
@@ -295,6 +353,9 @@ if has('nvim')
             return
         endif
 
+        " Match rg output when on a line number, e.g. second line:
+        " .vimrc
+        " 272:    function s:SmartTerminalGoto()
         let RG_PATTERN = '^\([0-9]\+\):'
         let matches = matchlist(line, RG_PATTERN)
         if len(matches) > 0
@@ -302,7 +363,7 @@ if has('nvim')
 
             " Scan upwards (up to 100 lines) to find the filename to edit
             let term_line = line(".") - 1
-            let stop_line = min([lineno - 100, 1])
+            let stop_line = min([term_line - 100, 1])
             while term_line >= stop_line
                 let line = getline(term_line)
                 let matches = matchlist(line, RG_PATTERN)
