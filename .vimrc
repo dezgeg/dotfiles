@@ -408,8 +408,8 @@ endif
 " Don't do it for commit messages, when the position is invalid, or when
 " inside an event handler (happens when dropping a file on gvim).
 autocmd BufReadPost *
-  \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
+  \ if match(&ft, 'git\(commit\|rebase\)') < 0 && line("'\"") > 0 && line("'\"") <= line("$") |
+  \   execute "normal g`\"" |
   \ endif
 
 " https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
