@@ -225,6 +225,17 @@ vnoremap <M-n> <C-i>
 noremap gs :Gstatus<CR>
 noremap gd :Gdiff<CR>
 
+" Undotree
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+
+function! g:Undotree_CustomMap()
+    nmap <buffer> H <plug>UndotreePreviousState
+    nmap <buffer> T <plug>UndotreeNextState
+endfunction
+
+noremap <silent> <C-u> :UndotreeToggle<CR>
+
 " fzf
 " Use --hidden with rg
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
