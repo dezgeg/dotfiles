@@ -14,6 +14,7 @@ if !has('nvim')
 endif
 Plugin 'brooth/far.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'itchyny/lightline.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/gv.vim'
@@ -28,7 +29,7 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'itchyny/lightline.vim'
+Plugin 'vim-scripts/argtextobj.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -36,6 +37,10 @@ if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
     BundleInstall
 endif
+
+augroup VimRC
+    autocmd!
+augroup END
 
 " Colorscheme
 set t_Co=256
@@ -138,12 +143,12 @@ let g:lightline = {
 
 " Trailing whitespace - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd VimRC InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd VimRC InsertLeave * match ExtraWhitespace /\s\+$/
 
 set timeoutlen=100
-au BufRead,BufNewFile *.rb set expandtab
-au BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
+autocmd VimRC BufRead,BufNewFile *.rb set expandtab
+autocmd VimRC BufRead,BufNewFile *.rb setlocal sw=2 ts=2 sts=2
 set updatetime=200
 " set clipboard=unnamed,autoselect
 
@@ -227,7 +232,7 @@ noremap <C-E> :Files<CR>
 noremap <C-G> :Rg<CR>
 noremap <C-F> :Buffers<CR>
 " Make ESC cancel (override global Esc map)
-autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+autocmd VimRC FileType fzf tnoremap <buffer> <Esc> <Esc>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " https://ddrscott.github.io/blog/2016/yank-without-jank/
@@ -310,7 +315,7 @@ vnoremap U :call <SID>SearchForSelection('?')<CR>
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
     " Enter insert mode in terminals by default
-    autocmd TermOpen * startinsert
+    autocmd VimRC TermOpen * startinsert
     " Sync working directory every time insert mode is left
     function s:UpdateTerminalWorkingDirectory()
         if exists('b:terminal_job_pid')
@@ -320,7 +325,7 @@ if has('nvim')
             endif
         endif
     endfunction
-    autocmd TermLeave * call <SID>UpdateTerminalWorkingDirectory()
+    autocmd VimRC TermLeave * call <SID>UpdateTerminalWorkingDirectory()
 
     " Smart terminal goto
     function s:SmartTerminalGoto()
@@ -407,13 +412,19 @@ endif
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
 " inside an event handler (happens when dropping a file on gvim).
-autocmd BufReadPost *
+autocmd VimRC BufReadPost *
   \ if match(&ft, 'git\(commit\|rebase\)') < 0 && line("'\"") > 0 && line("'\"") <= line("$") |
   \   execute "normal g`\"" |
   \ endif
 
 " https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
 let CursorColumnI = 0
-autocmd InsertEnter * let CursorColumnI = col('.')
-autocmd CursorMovedI * let CursorColumnI = col('.')
-autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+autocmd VimRC InsertEnter * let CursorColumnI = col('.')
+autocmd VimRC CursorMovedI * let CursorColumnI = col('.')
+autocmd VimRC InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+
+" TODO:
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+" http://vimcasts.org/episodes/undo-branching-and-gundo-vim/
+" http://vimcasts.org/episodes/fugitive-vim---a-complement-to-command-line-git/
+" https://stevelosh.com/blog/2010/09/coming-home-to-vim/
