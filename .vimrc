@@ -323,8 +323,9 @@ vnoremap u :call <SID>SearchForSelection('/')<CR>
 vnoremap U :call <SID>SearchForSelection('?')<CR>
 
 " Terminal
+tnoremap <Esc> <C-\><C-n>
+
 if has('nvim')
-    tnoremap <Esc> <C-\><C-n>
     " Enter insert mode in terminals by default
     autocmd VimRC TermOpen * startinsert
     " Sync working directory every time insert mode is left
@@ -337,69 +338,69 @@ if has('nvim')
         endif
     endfunction
     autocmd VimRC TermLeave * call <SID>UpdateTerminalWorkingDirectory()
-
-    " Smart terminal goto
-    function s:SmartTerminalGoto()
-        if &buftype != "terminal"
-            return
-        endif
-
-        let line = getline(".")
-
-        " Match ls -la output, e.g.
-        " -rw-r--r--   1 tmtynkky tmtynkky 10508 la 2020-09-12 20:59:07 .vimrc
-        let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
-        let matches = matchlist(line, LS_PATTERN)
-        if len(matches) > 0
-            let file = matches[1]
-            let w:terminal_buffer = bufnr('%')
-            execute "edit " . file
-            return
-        endif
-
-        " Match grep -n output, e.g.:
-        " .vimrc:272:    function s:SmartTerminalGoto()
-        let GREP_PATTERN = '^\([^:]\+\):\([0-9]\+\)'
-        let matches = matchlist(line, GREP_PATTERN)
-        if len(matches) > 0
-            let file = matches[1]
-            let lineno = matches[2]
-            let w:terminal_buffer = bufnr('%')
-            execute "edit +" . lineno . " " . file
-            return
-        endif
-
-        " Match rg output when on a line number, e.g. second line:
-        " .vimrc
-        " 272:    function s:SmartTerminalGoto()
-        let RG_PATTERN = '^\([0-9]\+\):'
-        let matches = matchlist(line, RG_PATTERN)
-        if len(matches) > 0
-            let lineno = matches[1]
-
-            " Scan upwards (up to 100 lines) to find the filename to edit
-            let term_line = line(".") - 1
-            let stop_line = min([term_line - 100, 1])
-            while term_line >= stop_line
-                let line = getline(term_line)
-                let matches = matchlist(line, RG_PATTERN)
-                if len(matches) == 0
-                    " 'line' did not contain line number -> should be filename
-                    if filereadable(line)
-                        let w:terminal_buffer = bufnr('%')
-                        execute "edit +" . lineno . " " . line
-                    endif
-                    return
-                endif
-
-                let term_line -= 1
-            endwhile
-
-        endif
-
-    endfunction
-    nnoremap <silent> <Return> :call <SID>SmartTerminalGoto()<CR>
 endif
+
+" Smart terminal goto
+function s:SmartTerminalGoto()
+    if &buftype != "terminal"
+        return
+    endif
+
+    let line = getline(".")
+
+    " Match ls -la output, e.g.
+    " -rw-r--r--   1 tmtynkky tmtynkky 10508 la 2020-09-12 20:59:07 .vimrc
+    let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
+    let matches = matchlist(line, LS_PATTERN)
+    if len(matches) > 0
+        let file = matches[1]
+        let w:terminal_buffer = bufnr('%')
+        execute "edit " . file
+        return
+    endif
+
+    " Match grep -n output, e.g.:
+    " .vimrc:272:    function s:SmartTerminalGoto()
+    let GREP_PATTERN = '^\([^:]\+\):\([0-9]\+\)'
+    let matches = matchlist(line, GREP_PATTERN)
+    if len(matches) > 0
+        let file = matches[1]
+        let lineno = matches[2]
+        let w:terminal_buffer = bufnr('%')
+        execute "edit +" . lineno . " " . file
+        return
+    endif
+
+    " Match rg output when on a line number, e.g. second line:
+    " .vimrc
+    " 272:    function s:SmartTerminalGoto()
+    let RG_PATTERN = '^\([0-9]\+\):'
+    let matches = matchlist(line, RG_PATTERN)
+    if len(matches) > 0
+        let lineno = matches[1]
+
+        " Scan upwards (up to 100 lines) to find the filename to edit
+        let term_line = line(".") - 1
+        let stop_line = min([term_line - 100, 1])
+        while term_line >= stop_line
+            let line = getline(term_line)
+            let matches = matchlist(line, RG_PATTERN)
+            if len(matches) == 0
+                " 'line' did not contain line number -> should be filename
+                if filereadable(line)
+                    let w:terminal_buffer = bufnr('%')
+                    execute "edit +" . lineno . " " . line
+                endif
+                return
+            endif
+
+            let term_line -= 1
+        endwhile
+
+    endif
+
+endfunction
+nnoremap <silent> <Return> :call <SID>SmartTerminalGoto()<CR>
 
 " NERDCommenter
 let g:NERDSpaceDelims = 1
@@ -425,7 +426,7 @@ endif
 " inside an event handler (happens when dropping a file on gvim).
 autocmd VimRC BufReadPost *
   \ if match(&ft, 'git\(commit\|rebase\)') < 0 && line("'\"") > 0 && line("'\"") <= line("$") |
-  \   execute "normal g`\"" |
+  \   execute "normal! g`\"" |
   \ endif
 
 " https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
