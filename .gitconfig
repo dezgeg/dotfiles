@@ -37,7 +37,7 @@
     follow = true
     date = format:%a %Y-%m-%d %H:%M:%S
 [format]
-    pretty = %C(yellow)%C(bold)Commit: %H%C(auto)%d%n%C(green)%ad %an <%ae>%n%w(0,4,4)%C(bold)%s%n%n%b
+    pretty = %C(yellow)%C(bold)Commit: %H%C(auto)%d%n%C(green)%ad %an <%ae>%n%w(0,4,4)%C(bold)%s%n%+b
 [interactive]
     singleKey = true
 [stash]
