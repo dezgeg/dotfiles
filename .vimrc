@@ -207,7 +207,7 @@ xnoremap <silent> . :normal .<CR>
 noremap gp `[v`]
 
 " Tabs
-nnoremap <silent> <C-=> :tabnew<CR>
+nnoremap <silent> <C-=> :tabnew \| Startify<CR>
 nnoremap <C-Left> gT
 nnoremap <C-Right> gt
 
@@ -235,6 +235,13 @@ function! g:Undotree_CustomMap()
 endfunction
 
 noremap <silent> <C-u> :UndotreeToggle<CR>
+
+" Startify
+let g:startify_custom_header = []
+let g:startify_commands = [
+\   {"s": ["Shell", "terminal"]},
+\   {"r": ["Reload .vimrc", "source $HOME/.vimrc"]},
+\]
 
 " fzf
 " Use --hidden with rg
