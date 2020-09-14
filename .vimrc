@@ -207,9 +207,9 @@ xnoremap <silent> . :normal .<CR>
 noremap gp `[v`]
 
 " Tabs
-nnoremap <silent> <C-=>  :tabnew<CR>
-nnoremap <C-[>  gT
-nnoremap <C-]>  gt
+nnoremap <silent> <C-=> :tabnew<CR>
+nnoremap <C-Left> gT
+nnoremap <C-Right> gt
 
 " Jumplist navigation: Ctrl-{Left,Right), Alt-[dn]
 nnoremap <M-Left>  <C-o>

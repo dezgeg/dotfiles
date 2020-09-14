@@ -27,8 +27,11 @@ vnoremap ; :
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-" Do not put stuff to clipboard with x
+" Do not put to clipboard
 noremap x "_x
+noremap X "_X
+noremap <Del> "_x
+noremap <BS> "_X
 
 " Waiting for use
 noremap Q <Nop>

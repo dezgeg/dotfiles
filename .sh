@@ -19,7 +19,7 @@ alias egrep='egrep --color=auto'
 
 alias ls='ls -F --color=auto --time-style="+%a %Y-%m-%d %H:%M:%S"'
 alias tree='tree -C'
-alias rg='rg -zS'
+alias rg='rg -zS --hidden'
 
 # cd aliases (do I actually use them)?
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
