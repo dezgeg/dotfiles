@@ -1,7 +1,7 @@
 " Vundle
 if !isdirectory(expand("~/.vim/bundle/Vundle.vim"))
     !mkdir -p ~/.vim/bundle
-    !git clone git://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     let s:bootstrap=1
 endif
 filetype off
