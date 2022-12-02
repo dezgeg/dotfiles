@@ -1,48 +1,21 @@
-" Dvorak homerow
-" Keep t/T as 'till char' in visual/operator-pending mode
-noremap d h
-noremap h j
-nnoremap t k
-vnoremap t k
-noremap n l
-
-" Shifted Dvorak homerow navigation
-noremap H 8<Down>
-nnoremap T 8<Up>
-vnoremap T 8<Up>
-
-noremap D <C-w><C-W>
-noremap N <C-w><C-w>
+source ~/dotfiles/vim/binds-dvorak.vim
+source ~/dotfiles/vim/binds-misc.vim
+source ~/dotfiles/vim/global-settings.vim
 
 noremap <C-d> gT
 noremap <C-n> gt
 
-" Remap useful keys lost by Dvorak binds
-noremap j d
-noremap l n
-noremap L N
-
-nnoremap ; :
-vnoremap ; :
 nnoremap <Tab> %
 vnoremap <Tab> %
-
-" Do not put to clipboard
-noremap x "_x
-noremap X "_X
-noremap <Del> "_x
-noremap <BS> "_X
 
 " Waiting for use
 noremap Q <Nop>
 nnoremap <nowait> Z <nop>
 
-noremap <C-S> :wa<CR>
-
+" Defaults in modern vim
 set showmode
 set incsearch hlsearch
-set ignorecase infercase smartcase
-set number
+
 set clipboard=unnamed
 
 " Free keys: M s S k K = + Q Z
