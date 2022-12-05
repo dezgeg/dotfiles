@@ -274,7 +274,7 @@ function s:SmartTerminalGoto()
 
     " Match ls -la output, e.g.
     " -rw-r--r--   1 tmtynkky tmtynkky 10508 la 2020-09-12 20:59:07 .vimrc
-    let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+\d\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
+    let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+[0-9.KM]\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
     let matches = matchlist(line, LS_PATTERN)
     if len(matches) > 0
         let file = matches[1]
