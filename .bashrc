@@ -37,8 +37,6 @@ fi
 
 # Tediously hand-crafted prompt
 _update_prompt() {
-    local exit_status=$?
-
     local repo_info=$(git rev-parse --git-dir --abbrev-ref HEAD 2>/dev/null)
     local git_prompt=''
     if [ -n "$repo_info" ]; then
