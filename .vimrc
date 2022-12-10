@@ -65,10 +65,6 @@ set copyindent " Autoindent?
 
 set mouse=a
 
-if has('nvim')
-    set inccommand=nosplit
-endif
-
 set timeoutlen=100
 set updatetime=200
 " set clipboard=unnamed,autoselect

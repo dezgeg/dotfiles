@@ -27,8 +27,11 @@ set scrolloff=16 " Context lines when scrolling
 " Smarter search
 set ignorecase infercase smartcase
 
-" Ex prompt
+" Command prompt
 set wildmode=longest,list " Make Tab completion work the usual way
+if has('nvim')
+    set inccommand=nosplit " Real-time update of s/foo/bar
+endif
 set wildignore+=*.a,*.o,*.d,*.out,*.beam,*.pyc
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.DS_Store,.git,.hg,.svn
