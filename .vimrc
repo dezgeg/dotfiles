@@ -91,12 +91,6 @@ cnoremap <A-w> <C-Right>
 cnoremap <A-^> <Home>
 cnoremap <A-$> <End>
 
-" Ctrl-Backspace and Alt-Backspace
-inoremap <Esc><Backspace> <C-W>
-cnoremap <Esc><Backspace> <C-W>
-inoremap <C-H> <C-W>
-cnoremap <C-H> <C-W>
-
 " Indent changes in insert mode (does not work in terminal!)
 inoremap <C-,> <C-D>
 inoremap <C-.> <C-T>
@@ -165,9 +159,6 @@ noremap <C-F> :Buffers<CR>
 " Make ESC cancel (override global Esc map)
 autocmd VimRC FileType fzf tnoremap <buffer> <Esc> <Esc>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-" https://ddrscott.github.io/blog/2016/yank-without-jank/
-vnoremap <expr>y "my\"" . v:register . "y`y"
 
 " If closing an editor window opened from terminal, focus back that same terminal
 function s:SmartWindowClose()
