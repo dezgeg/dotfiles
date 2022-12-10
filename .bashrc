@@ -72,13 +72,16 @@ _update_prompt() {
 _ps1='\[\033[1;37m\]' # bold white
 _ps1+='┊'
 if [ -n "$SSH_CONNECTION" ]; then
-    _ps1+='\[\033[1;32m\]' # bold green
-    _ps1+='\\u'            # username
-    _ps1+='\[\033[1;37m\]' # bold white
+    _ps1='\[\e];\u@\h \w\a\]' # window title = user@host directory
+    _ps1+='\[\033[1;32m\]'    # bold green
+    _ps1+='\\u'               # username
+    _ps1+='\[\033[1;37m\]'    # bold white
     _ps1+='@'
-    _ps1+='\[\033[1;36m\]' # bold cyan
-    _ps1+='\h'             # hostname
+    _ps1+='\[\033[1;36m\]'    # bold cyan
+    _ps1+='\h'                # hostname
     _ps1+=' '
+else
+    _ps1='\[\e];\w\a\]' # window title = directory
 fi
 _ps1+='\[\033[1;34m\]' # bold blue
 _ps1+='\w'             # directory
