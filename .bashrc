@@ -59,7 +59,7 @@ _update_prompt() {
         git_prompt+=")"
     fi
 
-    export PS1="$(printf "$_ps1$git_prompt$_ps1_trailer")"
+    export PS1="$_ps1$git_prompt$_ps1_trailer"
 
     # Magic stuff to tell when command output did not end with newline
     local no_nl_1='\033[7m%%\033[m' # Reverse-video percent sign
