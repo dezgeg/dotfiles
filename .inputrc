@@ -1,8 +1,12 @@
 $include /etc/inputrc
+set bind-tty-special-chars off
+set colored-completion-prefix on
 set colored-stats on
+set enable-bracketed-paste on
 set mark-symlinked-directories on
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
+set skip-completed-text on
 set visible-stats on
 
 # Alt-DHTN: vim cursor navigation
@@ -15,5 +19,13 @@ set visible-stats on
 "\eb": backward-word
 "\ew": forward-word
 
-# Ctrl-Backspace: kill word
+# Ctrl-BS: kill word
 "\C-h": backward-kill-word
+# Alt: kill shell word (bigger!)
+"\e\C-?": shell-backward-kill-word
+
+# Unbind keys that delete/paste stuff
+"\C-k": nop
+"\C-u": nop
+"\C-y": nop
+"\ey": nop
