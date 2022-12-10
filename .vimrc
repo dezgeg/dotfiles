@@ -49,6 +49,8 @@ source ~/dotfiles/vim/binds-misc.vim
 source ~/dotfiles/vim/global-settings.vim
 
 source ~/dotfiles/vim/lightline.vim
+source ~/dotfiles/vim/terminal.vim
+source ~/dotfiles/vim/tweaks.vim
 
 " Appearance
 set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
@@ -232,24 +234,6 @@ endfunction
 
 vnoremap u :call <SID>SearchForSelection('/')<CR>
 vnoremap U :call <SID>SearchForSelection('?')<CR>
-
-" Terminal
-tnoremap <Esc> <C-\><C-n>
-
-if has('nvim')
-    " Enter insert mode in terminals by default
-    autocmd VimRC TermOpen * startinsert
-    " Sync working directory every time insert mode is left
-    function s:UpdateTerminalWorkingDirectory()
-        if exists('b:terminal_job_pid')
-            let cwd = resolve('/proc/' . b:terminal_job_pid . '/cwd')
-            if isdirectory(cwd)
-                execute 'cd ' . fnameescape(cwd)
-            endif
-        endif
-    endfunction
-    autocmd VimRC TermLeave * call <SID>UpdateTerminalWorkingDirectory()
-endif
 
 " Smart terminal goto
 function s:SmartTerminalGoto()
