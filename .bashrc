@@ -61,40 +61,13 @@ _update_prompt() {
         git_prompt+=")"
     fi
 
-    # Right-side stuff: exit status + runtime
-    local right_prompt='\[\033[9999C\033[1A' # Move to right of screen and one up
-    if [ "$exit_status" != 0 ]; then
-        # Move cursor left (depending length of exit code)
-        right_prompt+="\033[$(( ${#exit_status} + 6 ))D"
-        right_prompt+='\033[41m' # red background
-        right_prompt+="↵$exit_status"
-        right_prompt+='\033[00m'   # restore color
-    else
-        # Move cursor left for execution time
-        right_prompt+='\033[5D'
-    fi
-
-    # Execution time
-    if [ -n "$_start_time" ]; then
-        local time=$((SECONDS - _start_time))
-        _start_time=
-        if [ "$time" -gt 3600 ]; then
-            right_prompt+="$(printf "%02dh%02dm" $((time / 3600)) $((time / 60)) )"
-        elif [ "$time" -gt 0 ]; then
-            right_prompt+="$(printf "%02dm%02ds" $((time / 60)) $((time % 60)) )"
-        fi
-    fi
-    right_prompt+='\033[1B\r\]' # Move cursor back to where prompt should start
-
-    export PS1="$(printf "$right_prompt$_ps1$git_prompt$_ps1_trailer")"
+    export PS1="$(printf "$_ps1$git_prompt$_ps1_trailer")"
 
     # Magic stuff to tell when command output did not end with newline
     local no_nl_1='\033[7m%%\033[m' # Reverse-video percent sign
     local no_nl_2='\r\033[K' # Move to start of line & erase
     printf "$no_nl_1%*s$no_nl_2" $((COLUMNS - 1)) ""
 }
-# Capture start time of command just before it is executed (gross hacks required).
-export PS0='${HOME:$((_start_time=$SECONDS,999))}'
 
 _ps1='\[\033[1;37m\]' # bold white
 _ps1+='┊'
