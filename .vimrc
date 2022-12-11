@@ -51,6 +51,8 @@ source ~/dotfiles/vim/lightline.vim
 source ~/dotfiles/vim/terminal.vim
 source ~/dotfiles/vim/tweaks.vim
 
+source ~/dotfiles/vim/smart-paren.vim
+
 " Appearance
 set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
 set guicursor+=i-ci-ve:ver25-blinkon1000-blinkoff100-blinkwait1000
@@ -179,45 +181,6 @@ function s:SmartWindowClose()
 endfunction
 nnoremap <silent> <C-Q> :call <SID>SmartWindowClose()<CR>
 
-" In diff mode, go to next/previous diff hunk
-" In terminal mode, go to next/previous prompt occurrence
-function s:SmartParen(key, mode)
-    if a:mode == 'v'
-        normal! gv
-    endif
-
-    if &diff
-        if a:key == '('
-            normal! [c
-        else
-            normal! ]c
-        endif
-        return
-    endif
-
-    if &buftype != "terminal"
-        if a:key == '('
-            normal! (
-        else
-            normal! )
-        endif
-        return
-    endif
-
-    let flags = 'nW'
-    if a:key == '('
-        let flags ..= 'b'
-    endif
-    let lineno = search('^┊', flags)
-
-    if lineno != 0
-        call cursor(lineno, 1)
-    endif
-endfunction
-nnoremap <silent> ( :call <SID>SmartParen('(', 'n')<CR>
-nnoremap <silent> ) :call <SID>SmartParen(')', 'n')<CR>
-vnoremap <silent> ( :call <SID>SmartParen('(', 'v')<CR>
-vnoremap <silent> ) :call <SID>SmartParen(')', 'v')<CR>
 
 " u/U in visual mode to search for the current selection (mnemoic: use)
 function! s:SearchForSelection(dir)
