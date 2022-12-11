@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 if !has('nvim')
   Plugin 'noahfrederick/vim-neovim-defaults'
 endif
-Plugin 'brooth/far.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'itchyny/lightline.vim'
 Plugin 'junegunn/fzf'
@@ -27,8 +26,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'svermeulen/vim-yoink'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/argtextobj.vim'
 call vundle#end()
 filetype plugin indent on
@@ -302,6 +301,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
 let g:NERDToggleCheckAllLines = 1
 let g:NERDAltDelims_c = 1
+let g:NERDDefaultAlign = 'left'
 noremap  <silent> <C-_> :call NERDComment('ci', 'toggle')<CR>
 inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'toggle')<CR>
 
