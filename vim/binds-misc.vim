@@ -2,9 +2,6 @@
 noremap  <F1> <Nop>
 inoremap <F1> <Nop>
 
-" Clear search on Esc
-nnoremap <silent> <Esc> :nohlsearch<CR>
-
 " Quick save
 noremap <C-S> :wa<CR>
 
