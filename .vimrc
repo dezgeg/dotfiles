@@ -99,9 +99,9 @@ cnoremap <A-$> <End>
 inoremap <C-,> <C-D>
 inoremap <C-.> <C-T>
 
-" Remap autocomplete to more logical keys
-inoremap <C-h> <C-n>
-inoremap <C-t> <C-p>
+" Remap autocomplete to more logical keys (FIXME conflicts with ctrl-backspace)
+" inoremap <C-h> <C-n>
+" inoremap <C-t> <C-p>
 
 " Sane paste
 inoremap <C-p> <C-g>u<C-r>"
