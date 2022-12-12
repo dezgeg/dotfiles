@@ -265,8 +265,8 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDToggleCheckAllLines = 1
 let g:NERDAltDelims_c = 1
 let g:NERDDefaultAlign = 'left'
-noremap  <silent> <C-_> :call NERDComment('ci', 'toggle')<CR>
-inoremap <silent> <C-_> <C-o>:call NERDComment('ci', 'toggle')<CR>
+noremap  <silent> <C-_> :call nerdcommenter#Comment('ci', 'toggle')<CR>
+inoremap <silent> <C-_> <C-o>:call nerdcommenter#Comment('ci', 'toggle')<CR>
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
@@ -296,4 +296,3 @@ autocmd VimRC InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 " http://vimcasts.org/episodes/undo-branching-and-gundo-vim/
 " http://vimcasts.org/episodes/fugitive-vim---a-complement-to-command-line-git/
-" https://stevelosh.com/blog/2010/09/coming-home-to-vim/
