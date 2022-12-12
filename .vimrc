@@ -52,6 +52,7 @@ source ~/dotfiles/vim/terminal.vim
 source ~/dotfiles/vim/tweaks.vim
 
 source ~/dotfiles/vim/smart-paren.vim
+source ~/dotfiles/vim/nerdcommenter.vim
 
 " Appearance
 set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
@@ -258,15 +259,6 @@ function s:SmartTerminalGoto()
 
 endfunction
 nnoremap <silent> <Return> :call <SID>SmartTerminalGoto()<CR>
-
-" NERDCommenter
-let g:NERDSpaceDelims = 1
-let g:NERDCommentEmptyLines = 1
-let g:NERDToggleCheckAllLines = 1
-let g:NERDAltDelims_c = 1
-let g:NERDDefaultAlign = 'left'
-noremap  <silent> <C-_> :call nerdcommenter#Comment('ci', 'toggle')<CR>
-inoremap <silent> <C-_> <C-o>:call nerdcommenter#Comment('ci', 'toggle')<CR>
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
