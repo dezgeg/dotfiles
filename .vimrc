@@ -54,11 +54,6 @@ source ~/dotfiles/vim/tweaks.vim
 source ~/dotfiles/vim/smart-paren.vim
 source ~/dotfiles/vim/nerdcommenter.vim
 
-" Appearance
-set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
-set guicursor+=i-ci-ve:ver25-blinkon1000-blinkoff100-blinkwait1000
-set guicursor+=r-cr-o:hor20-blinkon1000-blinkoff100-blinkwait1000
-
 source ~/.ideavimrc
 
 " Various global options
@@ -113,9 +108,6 @@ cnoremap <C-u> <C-o>u
 
 " Repeat command for each line in selection
 xnoremap <silent> . :normal .<CR>
-
-" select pasted text
-noremap gp `[v`]
 
 " Tabs
 nnoremap <silent> <C-=> :tabnew \| Startify<CR>

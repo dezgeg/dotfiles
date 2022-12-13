@@ -5,6 +5,9 @@ inoremap <F1> <Nop>
 " Quick save
 noremap <C-S> :wa<CR>
 
+" Select pasted text
+nnoremap gp `[v`]
+
 " Ctrl-Backspace like readline
 nnoremap <C-H> db
 inoremap <C-H> <C-W>

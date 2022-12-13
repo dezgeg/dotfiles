@@ -14,6 +14,11 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+" Cursor shape
+set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
+set guicursor+=i-ci-ve:ver25-blinkon1000-blinkoff100-blinkwait1000
+set guicursor+=r-cr-o:hor20-blinkon1000-blinkoff100-blinkwait1000
+
 " Whitespace display - https://vim.fandom.com/wiki/Highlight_unwanted_spaces
 set list listchars=tab:»·,trail:.
 highlight ExtraWhitespace ctermbg=red guibg=red
