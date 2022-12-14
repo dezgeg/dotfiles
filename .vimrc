@@ -94,10 +94,6 @@ cnoremap <A-$> <End>
 inoremap <C-,> <C-D>
 inoremap <C-.> <C-T>
 
-" Remap autocomplete to more logical keys (FIXME conflicts with ctrl-backspace)
-" inoremap <C-h> <C-n>
-" inoremap <C-t> <C-p>
-
 " Sane paste
 inoremap <C-p> <C-g>u<C-r>"
 cnoremap <C-p> <C-g>u<C-r>"
@@ -173,7 +169,6 @@ function s:SmartWindowClose()
     endif
 endfunction
 nnoremap <silent> <C-Q> :call <SID>SmartWindowClose()<CR>
-
 
 " u/U in visual mode to search for the current selection (mnemoic: use)
 function! s:SearchForSelection(dir)
