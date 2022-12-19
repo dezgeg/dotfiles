@@ -58,6 +58,7 @@ source ~/.ideavimrc
 
 " Various global options
 set formatoptions+=n " Do not make mess of numbered lists when using gq
+set undofile
 
 " Various editing options
 set copyindent " Autoindent?

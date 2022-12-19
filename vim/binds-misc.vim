@@ -1,6 +1,7 @@
-" Annoying
+" Annoying if hit accidentally
 noremap  <F1> <Nop>
 inoremap <F1> <Nop>
+nnoremap q: <Nop>
 
 " Quick save
 noremap <C-S> :wa<CR>
