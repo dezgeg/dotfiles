@@ -19,7 +19,8 @@ alias egrep='egrep --color=auto'
 
 alias ls='ls -F --color=auto --time-style="+%a %Y-%m-%d %H:%M:%S"'
 alias tree='tree -C'
-alias rg='rg -zS --hidden'
+# Smart case, include dot files/dirs, sane maximum line length
+alias rg='rg -S --hidden -M 140 --max-columns-preview'
 
 # cd aliases (do I actually use them)?
 alias cdr='cd "$(git rev-parse --show-toplevel)"'
