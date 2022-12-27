@@ -26,6 +26,8 @@ set visible-stats on
 
 # Unbind keys that delete/paste stuff
 "\C-k": nop
-"\C-u": nop
 "\C-y": nop
 "\ey": nop
+
+# Undo to better place
+"\C-u": undo
