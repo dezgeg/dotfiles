@@ -3,7 +3,7 @@ set -e
 my_dir="$(readlink -f "$(dirname "$0")")"
 
 dotfiles_remote="git@github.com:dezgeg/dotfiles.git"
-secrets_remote="dezgeg@kapsi.fi:dotfiles/secrets"
+secrets_remote="dezgeg@kapsi.fi:secrets.git"
 secrets_dir="$my_dir/secrets"
 
 flag_uninstall=0
@@ -87,15 +87,16 @@ if [ $flag_skip_secrets = 0 ]; then
     else
         (
             cd "$secrets_dir"
-            run_cmd git pull
+            run_cmd git pull --rebase
         )
     fi
     run_cmd chmod -R a-rw,u=rwX "$secrets_dir" >/dev/null
     echo
 
-    pushd "$my_dir" >/dev/null
-    git remote rm origin
-    git remote add origin "$dotfiles_remote"
-    git fetch origin
-    popd >/dev/null
+    (
+        cd "$my_dir"
+        git remote rm origin
+        git remote add origin "$dotfiles_remote"
+        git fetch origin
+    )
 fi
