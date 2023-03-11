@@ -266,12 +266,6 @@ autocmd VimRC BufReadPost *
   \   execute "normal! g`\"" |
   \ endif
 
-" https://vim.fandom.com/wiki/Prevent_escape_from_moving_the_cursor_one_character_to_the_left
-let CursorColumnI = 0
-autocmd VimRC InsertEnter * let CursorColumnI = col('.')
-autocmd VimRC CursorMovedI * let CursorColumnI = col('.')
-autocmd VimRC InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
-
 " TODO:
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 " http://vimcasts.org/episodes/undo-branching-and-gundo-vim/
