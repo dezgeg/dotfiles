@@ -17,3 +17,11 @@ let CursorColumnI = 0
 autocmd VimRC InsertEnter * let CursorColumnI = col('.')
 autocmd VimRC CursorMovedI * let CursorColumnI = col('.')
 autocmd VimRC InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it for commit messages, when the position is invalid, or when
+" inside an event handler (happens when dropping a file on gvim).
+autocmd VimRC BufReadPost *
+  \ if match(&ft, 'git\(commit\|rebase\)') < 0 && line("'\"") > 0 && line("'\"") <= line("$") |
+  \   execute "normal! g`\"" |
+  \ endif

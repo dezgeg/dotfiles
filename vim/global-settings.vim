@@ -9,9 +9,9 @@ set virtualedit=onemore " Allow moving to last column
 set shiftround " Round indentation when using the << or >> commands
 
 " Tabs/spaces configuration
-set tabstop=8
-set softtabstop=4
 set shiftwidth=4
+set softtabstop=-1 " Use same as shiftwidth
+set tabstop=8 " Default
 set expandtab
 
 " Cursor shape

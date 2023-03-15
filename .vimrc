@@ -258,13 +258,9 @@ if has('nvim')
     let g:yoinkSavePersistently = 1
 endif
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it for commit messages, when the position is invalid, or when
-" inside an event handler (happens when dropping a file on gvim).
-autocmd VimRC BufReadPost *
-  \ if match(&ft, 'git\(commit\|rebase\)') < 0 && line("'\"") > 0 && line("'\"") <= line("$") |
-  \   execute "normal! g`\"" |
-  \ endif
+if exists("g:neovide")
+    source ~/dotfiles/vim/neovide.vim
+endif
 
 " TODO:
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/

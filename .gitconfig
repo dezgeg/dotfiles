@@ -49,8 +49,6 @@
     smtpuser = dezgeg@gmail.com
 [push]
     default = simple
-[diff]
-    noprefix = true
 [rebase]
     autostash = true
     abbreviateCommands = true
