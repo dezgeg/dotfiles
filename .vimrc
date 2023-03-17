@@ -23,7 +23,6 @@ Plugin 'mhinz/vim-startify'
 " Plugin 'michaeljsmith/vim-indent-object' broken?
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'svermeulen/vim-yoink'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-fugitive'
@@ -185,16 +184,6 @@ endfunction
 
 vnoremap u :call <SID>SearchForSelection('/')<CR>
 vnoremap U :call <SID>SearchForSelection('?')<CR>
-
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-let g:yoinkMaxItems = 30
-let g:yoinkMoveCursorToEndOfPaste = 1
-if has('nvim')
-    let g:yoinkSavePersistently = 1
-endif
 
 if exists("g:neovide")
     source ~/dotfiles/vim/neovide.vim
