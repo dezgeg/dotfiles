@@ -186,12 +186,7 @@ endfunction
 vnoremap u :call <SID>SearchForSelection('/')<CR>
 vnoremap U :call <SID>SearchForSelection('?')<CR>
 
-" Smart terminal goto
-function s:SmartTerminalGoto()
-    if &buftype != "terminal"
-        return
-    endif
-
+function s:GetFilenameUnderCursor()
     let line = getline(".")
 
     " Match ls -la output, e.g.
@@ -199,10 +194,7 @@ function s:SmartTerminalGoto()
     let LS_PATTERN = '^[-drwx]\{10\} \+\d \+\w\+ \+\w\+ \+[0-9.KM]\+ \+\w\+ \+\d\{4}-\d\d-\d\d \d\d:\d\d:\d\d \(.\+\)[/*|]\{0,1\}$'
     let matches = matchlist(line, LS_PATTERN)
     if len(matches) > 0
-        let file = matches[1]
-        let w:terminal_buffer = bufnr('%')
-        execute "edit " . file
-        return
+        return [matches[1]]
     endif
 
     " Match grep -n output, e.g.:
@@ -212,15 +204,13 @@ function s:SmartTerminalGoto()
     if len(matches) > 0
         let file = matches[1]
         let lineno = matches[2]
-        let w:terminal_buffer = bufnr('%')
-        execute "edit +" . lineno . " " . file
-        return
+        return [file, lineno]
     endif
 
     " Match rg output when on a line number, e.g. second line:
     " .vimrc
     " 272:    function s:SmartTerminalGoto()
-    let RG_PATTERN = '^\([0-9]\+\):'
+    let RG_PATTERN = '^\([0-9]\+\)[:-]'
     let matches = matchlist(line, RG_PATTERN)
     if len(matches) > 0
         let lineno = matches[1]
@@ -234,8 +224,7 @@ function s:SmartTerminalGoto()
             if len(matches) == 0
                 " 'line' did not contain line number -> should be filename
                 if filereadable(line)
-                    let w:terminal_buffer = bufnr('%')
-                    execute "edit +" . lineno . " " . line
+                    return [line, lineno]
                 endif
                 return
             endif
@@ -244,8 +233,34 @@ function s:SmartTerminalGoto()
         endwhile
 
     endif
-
+    return []
 endfunction
+
+" Smart terminal goto
+function s:SmartTerminalGoto()
+    if &buftype != "terminal"
+        return
+    endif
+    let result = s:GetFilenameUnderCursor()
+
+    if len(result) == 2
+        " filename + line number
+        let file = result[0]
+        let lineno = result[1]
+        let w:terminal_buffer = bufnr('%')
+        execute "edit +" . lineno . " " . file
+        return
+    endif
+
+    if len(result) == 1
+        " just filename
+        let file = result[0]
+        let w:terminal_buffer = bufnr('%')
+        execute "edit " . file
+        return
+    endif
+ endfunction
+
 nnoremap <silent> <Return> :call <SID>SmartTerminalGoto()<CR>
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
