@@ -5,18 +5,8 @@ source ~/dotfiles/vim/global-settings.vim
 noremap <C-d> gT
 noremap <C-n> gt
 
-nnoremap <Tab> %
-vnoremap <Tab> %
-
-" Waiting for use
-noremap Q <Nop>
-nnoremap <nowait> Z <nop>
-
 " Defaults in modern vim
 set showmode
 set incsearch hlsearch
 
 set clipboard=unnamed
-
-" Free keys: M s S k K = + Q Z
-" Maybe free: D C R U X z

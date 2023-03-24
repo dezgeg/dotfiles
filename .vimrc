@@ -1,45 +1,9 @@
-" Vundle
-if !isdirectory(expand("~/.vim/bundle/Vundle.vim"))
-    !mkdir -p ~/.vim/bundle
-    !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    let s:bootstrap=1
-endif
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-if !has('nvim')
-  Plugin 'noahfrederick/vim-neovim-defaults'
-endif
-Plugin 'godlygeek/tabular'
-Plugin 'itchyny/lightline.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/gv.vim'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'mbbill/undotree'
-" Plugin 'michaeljsmith/vim-indent-object' broken?
-Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/argtextobj.vim'
-call vundle#end()
-filetype plugin indent on
-
-if exists("s:bootstrap") && s:bootstrap
-    unlet s:bootstrap
-    BundleInstall
-endif
-
 augroup VimRC
     autocmd!
 augroup END
 
 " Colorscheme
+source ~/dotfiles/vim/vundle-plugins.vim
 source ~/dotfiles/vim/colorscheme.vim
 source ~/dotfiles/vim/binds-dvorak.vim
 source ~/dotfiles/vim/binds-misc.vim
@@ -51,8 +15,6 @@ source ~/dotfiles/vim/tweaks.vim
 
 source ~/dotfiles/vim/smart-paren.vim
 source ~/dotfiles/vim/nerdcommenter.vim
-
-source ~/.ideavimrc
 
 " Various global options
 set formatoptions+=n " Do not make mess of numbered lists when using gq
@@ -103,10 +65,6 @@ cnoremap <C-u> <C-o>u
 
 " Repeat command for each line in selection
 xnoremap <silent> . :normal .<CR>
-
-" Tabs
-nnoremap <C-Left> gT
-nnoremap <C-Right> gt
 
 " Jumplist navigation: Ctrl-{Left,Right), Alt-[dn]
 nnoremap <M-Left>  <C-o>

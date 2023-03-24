@@ -2,6 +2,8 @@
 noremap  <F1> <Nop>
 inoremap <F1> <Nop>
 nnoremap q: <Nop>
+noremap Q <Nop>
+nnoremap <nowait> Z <nop>
 
 " Quick save
 noremap <C-S> :wa<CR>
@@ -21,3 +23,7 @@ cnoremap <Esc><Backspace> <C-W>
 " Ctrl-Del like readline (TODO how to do in cnoremap)
 inoremap <C-Del> <C-o>dw
 nnoremap <C-Del> dw
+
+" Easier access to match-paren
+nnoremap <Tab> %
+vnoremap <Tab> %
