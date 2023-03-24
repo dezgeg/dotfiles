@@ -73,6 +73,7 @@ for file in $(cd "$my_dir" && echo * .*) ; do
 
     make_link "$my_dir/$file" "$HOME/$file"
 done
+
 mkdir -p "$HOME/.config"
 for file in $(cd "$my_dir/.config" && echo *) ; do
     make_link "$my_dir/.config/$file" "$HOME/.config/$file"
