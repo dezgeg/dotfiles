@@ -2,6 +2,8 @@
 set title " Set terminal window title
 set number " Line numbers
 set shortmess+=atI " Do not show intro and shorten some messages
+set timeoutlen=100
+set signcolumn=yes
 
 " Editing
 set matchpairs+=<:> " Allow using % on C++ template params

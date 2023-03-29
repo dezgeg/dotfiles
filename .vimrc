@@ -14,6 +14,7 @@ source ~/dotfiles/vim/terminal.vim
 source ~/dotfiles/vim/tweaks.vim
 
 source ~/dotfiles/vim/smart-paren.vim
+source ~/dotfiles/vim/smart-window-close.vim
 source ~/dotfiles/vim/nerdcommenter.vim
 
 " Various global options
@@ -25,7 +26,6 @@ set copyindent " Autoindent?
 
 set mouse=a
 
-set timeoutlen=100
 set updatetime=200
 " set clipboard=unnamed,autoselect
 
@@ -100,24 +100,6 @@ noremap <C-F> :Buffers<CR>
 " Make ESC cancel (override global Esc map)
 autocmd VimRC FileType fzf tnoremap <buffer> <Esc> <Esc>
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-" If closing an editor window opened from terminal, focus back that same terminal
-function s:SmartWindowClose()
-    if exists('w:terminal_buffer')
-        let current_buffer = bufnr("%")
-        setlocal bufhidden=delete
-        execute "buffer " . w:terminal_buffer
-        unlet w:terminal_buffer
-        startinsert
-    else
-        if exists('g:GuiLoaded') && winnr("$") == 1 && tabpagenr("$") == 1
-            echo "Not closing last window!"
-        else
-            q
-        end
-    endif
-endfunction
-nnoremap <silent> <C-Q> :call <SID>SmartWindowClose()<CR>
 
 " u/U in visual mode to search for the current selection (mnemoic: use)
 function! s:SearchForSelection(dir)
