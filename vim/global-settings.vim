@@ -1,9 +1,13 @@
 " Global stuff
+set mouse=a " Support mouse
 set title " Set terminal window title
 set number " Line numbers
 set shortmess+=atI " Do not show intro and shorten some messages
-set timeoutlen=100
-set signcolumn=yes
+set undofile " Persistent undo
+set termguicolors " 24-bit colors
+set timeoutlen=100 " Don't wait ages after some keys
+set updatetime=200 " Update time for some plugins
+set signcolumn=yes " For gitsigns
 
 " Editing
 set matchpairs+=<:> " Allow using % on C++ template params
@@ -15,6 +19,10 @@ set shiftwidth=4
 set softtabstop=-1 " Use same as shiftwidth
 set tabstop=8 " Default
 set expandtab
+
+" Wrapping configuration
+set breakindent
+set showbreak=↳
 
 " Cursor shape
 set guicursor=n-v-c-sm:block-blinkon1000-blinkoff100-blinkwait1000
@@ -44,3 +52,6 @@ set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.DS_Store,.git,.hg,.svn
 set wildignore+=*~,*.swp,*.tmp
 set wildignore+=*.pdf,*.aux,*.toc,*.blg,*.bbl,*.cls
+
+" Completion (to be tried)
+" set completeopt=menu,menuone,preview,noinsert

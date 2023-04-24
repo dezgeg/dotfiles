@@ -99,5 +99,7 @@ if [ $flag_skip_secrets = 0 ]; then
         git remote rm origin
         git remote add origin "$dotfiles_remote"
         git fetch origin
+        git config --local user.name "Tuomas Tynkkynen"
+        git config --local user.email "tuomas.tynkkynen@iki.fi"
     )
 fi

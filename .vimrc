@@ -19,14 +19,10 @@ source ~/dotfiles/vim/nerdcommenter.vim
 
 " Various global options
 set formatoptions+=n " Do not make mess of numbered lists when using gq
-set undofile
 
 " Various editing options
 set copyindent " Autoindent?
 
-set mouse=a
-
-set updatetime=200
 " set clipboard=unnamed,autoselect
 
 " Navigation in insert mode
