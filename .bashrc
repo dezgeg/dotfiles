@@ -19,7 +19,7 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-if which lesspipe >/dev/null; then
+if which lesspipe >/dev/null 2>&1; then
     eval "$(SHELL=/bin/sh lesspipe)"
 fi
 
