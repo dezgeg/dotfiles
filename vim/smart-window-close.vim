@@ -7,7 +7,9 @@ function s:SmartWindowClose()
         unlet w:terminal_buffer
         startinsert
     else
-        if exists('g:GuiLoaded') && winnr("$") == 1 && tabpagenr("$") == 1
+        if exists('b:terminal_job_pid')
+            echo "Not closing terminal window!"
+        elseif exists('g:GuiLoaded') && winnr("$") == 1 && tabpagenr("$") == 1
             echo "Not closing last window!"
         else
             q
