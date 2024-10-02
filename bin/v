@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+if [ -n "$NVIM_LISTEN_ADDRESS" ] || [ -n "$NVIM" ]; then
     exec nvr -cc "let w:terminal_buffer = bufnr('%')" --remote-wait-silent "$@"
 else
     exec nvim "$@"
