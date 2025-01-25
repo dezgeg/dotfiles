@@ -88,6 +88,7 @@ if [ $flag_skip_secrets = 0 ]; then
     else
         (
             cd "$secrets_dir"
+            run_cmd git branch --set-upstream-to=origin/master master
             run_cmd git pull --rebase
         )
     fi
